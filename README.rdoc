@@ -1,0 +1,8 @@
+== README
+
+# Never Again
+
+## About
+A Yelp-esque app to catalog your worst dining experiences.
+
+###

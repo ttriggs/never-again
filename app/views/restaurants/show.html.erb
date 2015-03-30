@@ -1,0 +1,47 @@
+<div class="my-h1"><%= @restaurant.name %></div>
+
+  <p>
+    <strong>Address:</strong><br>
+    <%= @restaurant.address %><br>
+  </p>
+  <p>
+    <strong>Type of Cuisine:</strong>
+    <% if @restaurant.cuisine.present? %>
+      <%= @restaurant.cuisine.name %>
+    <% else %>
+      Uncategorized
+    <% end %>
+  </p>
+  <p>
+    <strong>Description:</strong>
+    <%= @restaurant.description %>
+  </p>
+
+
+<%= link_to 'Add a Review for this Restaurant', new_restaurant_review_path(@restaurant) %><br>
+
+<div class="my-h3">Reviews</div>
+
+  <ul>
+    <% if @restaurant.reviews.none? %>
+      <p><strong> No Reviews yet for this restaurant </strong></p>
+    <%-else-%>
+      <% @restaurant.reviews.order('created_at desc').each do |review| %>
+        <p>
+          <div class="review-box">
+            <li><strong>Rating(1-5): </strong>
+            <strong><%= review.rating %></strong>
+            </li>
+            <li><strong>Review:</strong>
+            <%= review.body %>
+            </li>
+            <li><strong>Submitted On:</strong>
+            <%= review.created_at %>
+            </li>
+          </div>
+        </p>
+      <%-end-%>
+    <%-end-%>
+  </ol>
+
+<%= link_to 'Back to all restaurants', restaurants_path %>
