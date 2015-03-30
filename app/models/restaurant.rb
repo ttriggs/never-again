@@ -4,10 +4,10 @@ class Restaurant < ActiveRecord::Base
 
   has_many :reviews, dependent: :destroy
 
+  validates :cuisine_id, presence: true
   validates :user, presence: true
 
   validates :name, presence: true,
-                   uniqueness: true,
                    length: { minimum: 3, maximum: 40 }
 
   validates :address, presence: true,
@@ -16,5 +16,5 @@ class Restaurant < ActiveRecord::Base
   validates :city, presence: true,
                       length: { minimum: 3, maximum: 40 }
 
-  validates :cuisine_id, presence: true
+#validate name & address for scope
 end

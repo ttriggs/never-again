@@ -3,8 +3,7 @@ class Review < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :restaurant
-  has_many :likes, dependent: :destroy
-
+  # has_many :likes, dependent: :destroy
 
   validates :user, presence: true
 

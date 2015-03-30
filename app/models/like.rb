@@ -1,7 +1,6 @@
 class Like < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :review
+  # belongs_to :user
+  # belongs_to :review
 
-  validates :user, presence: true
-
+  # validates :user, presence: true
 end

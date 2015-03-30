@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
 
   def create
-    @restaurant = fetch_restaurant
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @review = @restaurant.reviews.new(review_params)
     @review.user = current_user
     if @review.save
@@ -14,15 +14,11 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @restaurant = fetch_restaurant
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @review = Review.new
   end
 
-  protected
-
-  def fetch_restaurant
-    Restaurant.find(params[:restaurant_id])
-  end
+  private
 
   def review_params
     params.require(:review).permit(:rating, :body)

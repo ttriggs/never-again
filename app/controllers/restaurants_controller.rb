@@ -5,7 +5,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    @restaurant = fetch_restaurant
+    @restaurant = Restaurant.find(params[:id])
     @review = Review.new
   end
 
@@ -25,11 +25,7 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  protected
-
-  def fetch_restaurant
-    Restaurant.find(params[:id])
-  end
+  private
 
   # Use callbacks to share common setup or constraints between actions.
   def restaurant_params
