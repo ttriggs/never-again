@@ -4,8 +4,7 @@ feature "remove a review for a restaurant", %q(
   As a user I want to edit a review I added for a given restaurant
 ) do
 
-  scenario "Authenticated user unsuccessfully edits a review they made",
-    focus: true do
+  scenario "Authenticated user unsuccessfully edits a review they made" do
     restaurant = FactoryGirl.create(:restaurant)
     user = FactoryGirl.create(:user)
     sign_in_as(user)
