@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'creating and updating restaurants' do
   context 'as an authorized user' do
     let(:user) { FactoryGirl.create(:user) }
-    let(:restaurant) { FactoryGirl.create(:restaurant) }
+    let(:restaurant) { FactoryGirl.build(:restaurant, user: user) }
 
     before :each do
       sign_in_as user
@@ -23,12 +23,17 @@ feature 'creating and updating restaurants' do
       expect(page).to have_content(restaurant.name)
     end
 
-    scenario 'I can update a restaurant I create' do
-      restaurant = FactoryGirl.create(:restaurant)
+    scenario 'I can see edit and delete links for a restaurant I created' do
+      restaurant = FactoryGirl.create(:restaurant, user: user)
       visit restaurant_path(restaurant)
 
-      click_on 'Edit Restaurant'
-      expect(page).to have_content('Edit Restaurant')
+      expect(page).to have_link('Edit')
+      expect(page).to have_link('Delete')
+    end
+
+    scenario 'I can update a restaurant I create' do
+      restaurant = FactoryGirl.create(:restaurant, user: user)
+      visit edit_restaurant_path(restaurant)
 
       # should be on the edit page for edited restaurant
       fill_in 'Name', with: 'edited name'
@@ -42,18 +47,13 @@ feature 'creating and updating restaurants' do
     end
 
     scenario 'I can delete a restaurant I created' do
-      restaurant = FactoryGirl.create(:restaurant)
+      restaurant = FactoryGirl.create(:restaurant, user: user)
       visit restaurant_path(restaurant)
       click_on 'Delete Restaurant'
 
       # should be on restaurants index page
       expect(page).to have_content('Restaurant deleted successfully!')
       expect(page).to not_have_content(restaurant.name)
-
-      visit restaurant_path(restaurant)
-      expect(page).to have_content('No restaurant found at this address')
     end
   end
-
-
 end
