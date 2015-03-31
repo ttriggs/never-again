@@ -1,0 +1,36 @@
+# As an authenticated user
+# I want to delete my account
+# So that my information is no longer retained by the app
+
+
+feature 'user deletes account', %Q{
+  As a user, I want to delete my account
+  so that my information is no longer retained by the app
+} do
+
+  scenario 'user deletes account' do
+    visit new_user_registration_path
+
+    fill_in 'Email', with: 'john@example.com'
+    fill_in 'Password', with: 'password'
+    fill_in 'Password confirmation', with: 'password'
+
+    click_button 'Sign up'
+
+    click_button 'My account'
+    click_button 'Delete'
+
+    visit user_session_path
+    fill_in 'Email', with: 'john@example.com'
+    fill_in 'Password', with: 'password'
+
+
+
+    expect(page).to have_content("Invalid email or password.")
+  end
+
+
+
+
+
+end
