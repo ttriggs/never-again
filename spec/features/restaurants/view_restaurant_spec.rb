@@ -32,4 +32,3 @@ feature 'view restaurants' do
     end
   end
 end
-
