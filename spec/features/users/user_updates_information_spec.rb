@@ -1,9 +1,8 @@
 require "rails-helper"
 
-  feature "user updates user information", %{
-    As a signed in user, I want to be able to
-    update my user information
-  } do
+feature "user updates user information", %{
+  As a signed in user, I want to be able to
+  update my user information } do
   scenario "update user information" do
     user1 = FactoryGirl.create(:user)
     user2 = FactoryGirl.create(:user)
@@ -22,5 +21,4 @@ require "rails-helper"
     expect(page).to have_content(user2.email)
     expect(page).to have_content(user2.password)
   end
-
 end

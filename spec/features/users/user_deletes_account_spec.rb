@@ -9,10 +9,7 @@ feature "user deletes account", %{
   so that my information is no longer retained by the app
 } do
   scenario "user deletes account" do
-    visit new_user_registration_path
-    fill_in "Email", with: "john@example.com"
-    fill_in "Password", with: "password"
-    fill_in "Password confirmation", with: "password"
+    user = FactoryGirl.create(:user)
 
     click_button "Sign up"
 
@@ -20,11 +17,10 @@ feature "user deletes account", %{
     click_button "Delete"
 
     visit user_session_path
-    fill_in "Email", with: "john@example.com"
-    fill_in "Password", with: "password"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
     click_button "Sign in"
 
     expect(page).to have_content("Invalid email or password.")
   end
-
 end
