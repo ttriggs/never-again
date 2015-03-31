@@ -2,10 +2,10 @@ require 'factory_girl_rails'
 
 FactoryGirl.define do
   factory :user do
-      sequence(:username) { |u| "usename#{u}"}
-      sequence(:email) {|n| "user#{n}@example.com" }
-      password 'password'
-      password_confirmation 'password'
+    sequence(:username) { |u| "usename#{u}"}
+    sequence(:email) { |n| "user#{n}@example.com" }
+    password 'password'
+    password_confirmation 'password'
   end
 
   factory :restaurant do
@@ -30,6 +30,5 @@ FactoryGirl.define do
   factory :cuisine do
     name "sea-food"
   end
-
 
 end
