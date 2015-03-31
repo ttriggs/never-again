@@ -8,10 +8,8 @@ feature "user deletes account", %{
   As a user, I want to delete my account
   so that my information is no longer retained by the app
 } do
-
   scenario "user deletes account" do
     visit new_user_registration_path
-
     fill_in "Email", with: "john@example.com"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"

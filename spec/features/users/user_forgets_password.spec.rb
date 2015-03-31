@@ -4,7 +4,6 @@ feature "user forgets password", %{
   As a user, I want to be able to create a new password
   if I forget mine
 } do
-
   scenario "user forgets password, makes new one" do
     visit root
     click_button "Sign in"
