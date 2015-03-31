@@ -20,7 +20,8 @@ feature "Add a review for a restaurant", %q(
     expect(page).to have_content ("Review saved successfully.")
   end
 
-  scenario "Authenticated user attempts to add an incomplete review for a restaurant" do
+  scenario "Authenticated user attempts to
+    add an incomplete review for a restaurant" do
     restaurant = FactoryGirl.create(:restaurant)
 
     user = FactoryGirl.create(:user)
