@@ -12,11 +12,13 @@ feature "user updates user information", %{
 
     click_button "My account"
 
+    fill_in "Username", with: "janedoe"
     fill_in "Email", with: "pops@aol.com"
     fill_in "Password", with: "12345678"
 
     click_button "Save changes"
 
+    expect(page).to have_content("janedoe")
     expect(page).to have_content("pops@aol.com")
     expect(page).to have_content("12345678")
   end
