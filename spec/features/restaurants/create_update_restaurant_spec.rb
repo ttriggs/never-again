@@ -18,7 +18,7 @@ feature 'creating and updating restaurants' do
       fill_in 'City', with: restaurant.city
       fill_in 'Description', with: restaurant.description
 
-      select cuisine.name, :from => "restaurant_cuisine_id"
+      select cuisine.name, from: "restaurant_cuisine_id"
       click_on 'Create Restaurant'
 
       expect(page).to have_content('Restaurant saved successfully!')
