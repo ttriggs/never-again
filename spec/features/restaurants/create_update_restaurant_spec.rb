@@ -10,13 +10,15 @@ feature 'creating and updating restaurants' do
     end
 
     scenario 'I can successfully create a restaurant' do
+      cuisine = FactoryGirl.create(:cuisine)
       visit new_restaurant_path
 
       fill_in 'Name', with: restaurant.name
       fill_in 'Address', with: restaurant.address
       fill_in 'City', with: restaurant.city
       fill_in 'Description', with: restaurant.description
-      find('#restaurant_cuisine_id').find(:xpath, 'option[1]').select_option
+
+      select cuisine.name, :from => "restaurant_cuisine_id"
       click_on 'Create Restaurant'
 
       expect(page).to have_content('Restaurant saved successfully!')
