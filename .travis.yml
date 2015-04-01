@@ -1,5 +1,5 @@
 language: ruby
 rvm:
-  - 2.1.5  # replace this with the ruby version you are using in development
+ - 2.1.5  # replace this with the ruby version you are using in development
 before_script:
-  - psql -c 'create database never_again_test;' -U postgres
+ - psql -c 'create database never_again_test;' -U postgres
