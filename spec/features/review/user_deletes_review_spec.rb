@@ -17,7 +17,7 @@ feature "remove a review for a restaurant", %q(
   end
 
   scenario "Authenticated user unsuccessfully attempts to delete a review they
-    did not make", focus: true do
+    did not make" do
     review = FactoryGirl.create(:review)
     restaurant = review.restaurant
     user = restaurant.user
