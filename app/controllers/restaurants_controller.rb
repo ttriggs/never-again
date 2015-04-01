@@ -23,7 +23,6 @@ class RestaurantsController < ApplicationController
     end
   end
 
-
   def update
     @restaurant = Restaurant.update(params[:id], restaurant_params)
     if @restaurant.save
@@ -64,5 +63,4 @@ class RestaurantsController < ApplicationController
     params.require(:restaurant).permit(:name, :address, :city,
                                        :description, :cuisine_id)
   end
-
 end

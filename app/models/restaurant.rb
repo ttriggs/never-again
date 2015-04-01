@@ -18,6 +18,6 @@ class Restaurant < ActiveRecord::Base
 
 #validate name & address for scope
   def owner?(current_user)
-    self.user == current_user
+    user == current_user
   end
 end
