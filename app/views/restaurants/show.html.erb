@@ -50,10 +50,6 @@
             <% if current_user == review.user %>
               <div>
                 <%= link_to "Delete review", review_path(review), method: :delete %>
-              </div>
-            <% end %>
-            <% if current_user == review.user %>
-              <div>
                 <%= link_to "Edit Review", edit_restaurant_review_path(review.restaurant, review) %>
               </div>
             <% end %>
