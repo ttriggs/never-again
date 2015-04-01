@@ -19,7 +19,7 @@ feature 'creating and updating restaurants' do
       fill_in 'Description', with: restaurant.description
 
       select cuisine.name, from: "restaurant_cuisine_id"
-      click_link 'Create Restaurant'
+      click_button 'Create Restaurant'
 
       expect(page).to have_content('Restaurant saved successfully!')
       expect(page).to have_content(restaurant.name)
@@ -40,7 +40,7 @@ feature 'creating and updating restaurants' do
       # should be on the edit page for edited restaurant
       fill_in 'Name', with: 'edited name'
       fill_in 'Address', with: 'edited address'
-      click_link 'Update Restaurant'
+      click_button 'Update Restaurant'
 
       # should be on the show page for edited restaurant
       expect(page).to have_content('Restaurant saved successfully!')

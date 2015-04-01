@@ -6,17 +6,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
+
   <nav class="top-bar">
     <ul class="title-area">
       <li class="name">
-        <h1><a href="/">NeverAgain</a></h1>
+        <div><a href="/">NeverAgain</a></div>
       </li>
     </ul>
 
     <section class="top-bar-section">
       <ul class="right">
         <%- if current_user -%>
+
+          <li><%= link_to 'My Account', user_path(current_user) %></li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
         <%- else -%>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>

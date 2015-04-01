@@ -6,20 +6,21 @@ feature "user updates user information", %{
   scenario "update user information" do
     user = FactoryGirl.create(:user)
 
-    visit root
+    visit root_path
 
-    sign_in_as user
+    sign_in_as(user)
 
-    click_button "My account"
+    click_link "My Account"
+    click_link "Edit my Account"
 
     fill_in "Username", with: "janedoe"
     fill_in "Email", with: "pops@aol.com"
-    fill_in "Password", with: "12345678"
+    fill_in "Current password", with: user.password
 
-    click_button "Save changes"
+    click_button "Update my Account"
 
+    expect(page).to have_content("Your account has been updated successfully.")
     expect(page).to have_content("janedoe")
     expect(page).to have_content("pops@aol.com")
-    expect(page).to have_content("12345678")
   end
 end

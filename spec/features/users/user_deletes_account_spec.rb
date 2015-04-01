@@ -13,15 +13,11 @@ feature "user deletes account", %{
 
     sign_in_as(user)
 
-    click_button "My account"
-    click_button "Delete"
+    click_link "My Account"
+    click_link "Edit my Account"
 
-    visit user_session_path
-    fill_in "Username", with: user.username
-    fill_in "Email", with: user.email
-    fill_in "Password", with: user.password
-    click_button "Sign in"
+    click_button "Delete my Account"
 
-    expect(page).to have_content("Invalid email or password.")
+    expect(page).to have_content("Your account has been successfully deleted.")
   end
 end
