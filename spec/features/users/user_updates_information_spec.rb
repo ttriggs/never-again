@@ -1,4 +1,4 @@
-require "rails-helper"
+require "rails_helper"
 
 feature "user updates user information", %{
   As a signed in user, I want to be able to
