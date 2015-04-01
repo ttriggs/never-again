@@ -19,7 +19,7 @@ feature 'creating and updating restaurants' do
       fill_in 'Description', with: restaurant.description
 
       select cuisine.name, from: "restaurant_cuisine_id"
-      click_on 'Create Restaurant'
+      click_link 'Create Restaurant'
 
       expect(page).to have_content('Restaurant saved successfully!')
       expect(page).to have_content(restaurant.name)
@@ -40,7 +40,7 @@ feature 'creating and updating restaurants' do
       # should be on the edit page for edited restaurant
       fill_in 'Name', with: 'edited name'
       fill_in 'Address', with: 'edited address'
-      click_on 'Update Restaurant'
+      click_link 'Update Restaurant'
 
       # should be on the show page for edited restaurant
       expect(page).to have_content('Restaurant saved successfully!')
@@ -51,7 +51,7 @@ feature 'creating and updating restaurants' do
     scenario 'I can delete a restaurant I created' do
       restaurant = FactoryGirl.create(:restaurant, user: user)
       visit restaurant_path(restaurant)
-      click_on 'Delete Restaurant'
+      click_link 'Delete Restaurant'
 
       # should be on restaurants index page
       expect(page).to have_content('Restaurant deleted successfully!')

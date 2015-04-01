@@ -42,20 +42,20 @@
 
   <div>
     <% if @restaurant.reviews.none? %>
-      <div><strong> No Reviews yet for this restaurant </strong></div>
+      <div> No Reviews yet for this restaurant </div>
     <%-else-%>
       <% @restaurant.reviews.order('created_at desc').each do |review| %>
         <div>
           <div>
-            <li><strong>Rating(1-5): </strong>
-            <strong><%= review.rating %></strong>
-            </li>
-            <li><strong>Review:</strong>
+            <div>Rating(1-5):
+            <%= review.rating %>
+            </div>
+            <div>Review:
             <%= review.body %>
-            </li>
-            <li><strong>Submitted On:</strong>
+            </div>
+            <div>Submitted On:
             <%= review.created_at %>
-            </li>
+            </div>
           </div>
         </div>
       <%-end-%>

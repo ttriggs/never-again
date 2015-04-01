@@ -5,7 +5,10 @@ class Review < ActiveRecord::Base
   belongs_to :restaurant
   # has_many :likes, dependent: :destroy
 
+  validates :restaurant, presence: true
+
   validates :user, presence: true
+
   validates :rating, presence: true,
-            numericality: { minimum: RATINGS[0], maximum: RATINGS[-1] }
+             inclusion: { in: RATINGS }
 end

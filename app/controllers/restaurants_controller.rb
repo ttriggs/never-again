@@ -15,12 +15,7 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
-    if @restaurant.owner?(current_user)
-      @restaurant
-    else
-      flash[:notice] = "Your account is not authorized to view this page"
-    end
+    @restaurant = current_user.restaurants.find(params[:id])
   end
 
   def update
@@ -35,13 +30,9 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    @restaurant = Restaurant.find(params[:id])
-    if @restaurant.owner?(current_user)
-      @restaurant.destroy
-      redirect_to restaurants_path, notice: 'Restaurant deleted successfully!'
-    else
-      flash[:notice] = "Your account is not authorized to view this page"
-    end
+    @restaurant = current_user.restaurants.find(params[:id])
+    @restaurant.destroy
+    redirect_to restaurants_path, notice: 'Restaurant deleted successfully!'
   end
 
   def create
