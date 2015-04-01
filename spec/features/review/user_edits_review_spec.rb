@@ -24,7 +24,6 @@ feature "remove a review for a restaurant", %q(
     user = restaurant.user
     sign_in_as(user)
 
-
     visit restaurant_review_path(restaurant, review, method: :patch)
 
     expect(page).to have_content ("You can't edit a review that isn't yours.")
