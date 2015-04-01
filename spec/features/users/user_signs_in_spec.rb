@@ -10,7 +10,7 @@ feature "user signs in", %{
 
     visit new_user_session_path
 
-    sign_in_as user
+    sign_in_as(user)
 
     expect(page).to have_content("Signed in successfully")
     expect(page).to have_content("Sign Out")
