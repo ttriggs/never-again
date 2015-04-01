@@ -17,4 +17,7 @@ class Restaurant < ActiveRecord::Base
                       length: { minimum: 3, maximum: 40 }
 
 #validate name & address for scope
+  def owner?(current_user)
+    user == current_user
+  end
 end

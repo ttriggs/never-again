@@ -7,13 +7,13 @@ feature "remove a review for a restaurant", %q(
   scenario "Authenticated user successfully delete a review they made" do
     review = FactoryGirl.create(:review)
     user = review.user
-    restaurant = restaurant.user
+    restaurant = review.restaurant
 
     sign_in_as(user)
     # user needs to click on delete next to the review that belongs to them
-    visit restaurant_review_path(restaurant, review, method: :delete)
+    visit restaurant_review_path(restaurant, review)
+    click_on "Delete Review"
     expect(page).to have_content ("Review deleted.")
-
   end
 
   scenario "Authenticated user unsuccessfully attempts to delete a review they

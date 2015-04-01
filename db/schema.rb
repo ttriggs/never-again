@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(version: 20150330191104) do
   add_index "cuisines", ["name"], name: "index_cuisines_on_name", unique: true, using: :btree
 
   create_table "likes", force: :cascade do |t|
-    t.integer  "user_id",                    null: false
-    t.integer  "review_id",                  null: false
+    t.integer  "user_id",    null: false
+    t.integer  "review_id",  null: false
     t.boolean  "like",       default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "restaurants", force: :cascade do |t|
