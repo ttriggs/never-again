@@ -11,21 +11,24 @@ feature "remove a review for a restaurant", %q(
 
     sign_in_as(user)
 
-    # user needs to click on edit next to the review that belongs to them
-    visit restaurant_review_path(restaurant, review, method: :patch)
+    visit restaurant_path(restaurant)
+    click_on("Edit Review")
+
+    fill_in("Review", with: "An affront to all five senses")
+    click_on("Update Review")
 
     expect(page).to have_content ("Review edited.")
   end
 
-  scenario "Authenticated user unsuccessfully attempts to edit a review they
+  scenario "Authenticated user can not see edit button for a review they
     did not make" do
     review = FactoryGirl.create(:review)
     restaurant = review.restaurant
     user = restaurant.user
     sign_in_as(user)
 
-    visit restaurant_review_path(restaurant, review, method: :patch)
+    visit restaurant_path(restaurant)
 
-    expect(page).to have_content ("You can't edit a review that isn't yours.")
+    expect(page).to_not have_content ("Edit Review")
   end
 end

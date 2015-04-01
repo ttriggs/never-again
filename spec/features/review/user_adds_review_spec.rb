@@ -12,7 +12,7 @@ feature "Add a review for a restaurant", %q(
     user = FactoryGirl.create(:user)
     sign_in_as(user)
 
-    visit new_restaurant_review_path(restaurant)
+    visit restaurant_path(restaurant)
     select("2", from: "Rating")
     fill_in("Review", with: "An affront to all five senses")
     click_on("Create Review")

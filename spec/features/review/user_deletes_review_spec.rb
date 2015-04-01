@@ -10,9 +10,8 @@ feature "remove a review for a restaurant", %q(
     restaurant = review.restaurant
 
     sign_in_as(user)
-    # user needs to click on delete next to the review that belongs to them
-    visit restaurant_review_path(restaurant, review)
-    click_on "Delete Review"
+    visit restaurant_path(restaurant)
+    click_on "Delete review"
     expect(page).to have_content ("Review deleted.")
   end
 
@@ -22,9 +21,8 @@ feature "remove a review for a restaurant", %q(
     restaurant = review.restaurant
     user = restaurant.user
     sign_in_as(user)
+    visit restaurant_path(restaurant)
 
-    visit restaurant_review_path(restaurant, review, method: :delete)
-
-    expect(page).to have_content ("You can't delete a review that isn't yours.")
+    expect(page).to_not have_content ("Delete review")
   end
 end
