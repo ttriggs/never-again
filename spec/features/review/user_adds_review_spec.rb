@@ -34,7 +34,7 @@ feature "Add a review for a restaurant", %q(
     expect(page).to have_content ("You must select a rating")
   end
 
-  scenario "Inauthenticated user attemps to add a review for a restaurant" do
+  scenario "Unathenticated user attemps to add a review for a restaurant" do
     restaurant = FactoryGirl.create(:restaurant)
     # We want to stop them from even getting on the new review form page
 
