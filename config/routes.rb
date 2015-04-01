@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :registrations => :registrations }
+  devise_for :users, controllers: { registrations: :registrations }
   root 'restaurants#index'
   resources :restaurants do
     resources :reviews, only: [:new, :create]
