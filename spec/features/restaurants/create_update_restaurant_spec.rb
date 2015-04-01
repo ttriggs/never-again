@@ -29,8 +29,8 @@ feature 'creating and updating restaurants' do
       restaurant = FactoryGirl.create(:restaurant, user: user)
       visit restaurant_path(restaurant)
 
-      expect(page).to have_link('Edit')
-      expect(page).to have_link('Delete')
+      expect(page).to have_link('Edit Restaurant')
+      expect(page).to have_link('Delete Restaurant')
     end
 
     scenario 'I can update a restaurant I create' do
@@ -40,7 +40,7 @@ feature 'creating and updating restaurants' do
       # should be on the edit page for edited restaurant
       fill_in 'Name', with: 'edited name'
       fill_in 'Address', with: 'edited address'
-      click_on 'Save Changes'
+      click_on 'Update Restaurant'
 
       # should be on the show page for edited restaurant
       expect(page).to have_content('Restaurant saved successfully!')
@@ -55,7 +55,7 @@ feature 'creating and updating restaurants' do
 
       # should be on restaurants index page
       expect(page).to have_content('Restaurant deleted successfully!')
-      expect(page).to not_have_content(restaurant.name)
+      expect(page).to_not have_content(restaurant.name)
     end
   end
 end

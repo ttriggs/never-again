@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @restaurants = Restaurant.order('created_at desc').limit(30)
@@ -11,6 +12,37 @@ class RestaurantsController < ApplicationController
 
   def new
     @restaurant = Restaurant.new
+  end
+
+  def edit
+    @restaurant = Restaurant.find(params[:id])
+    if @restaurant.owner?(current_user)
+      @restaurant
+    else
+      flash[:notice] = "Your account is not authorized to view this page"
+    end
+  end
+
+
+  def update
+    @restaurant = Restaurant.update(params[:id], restaurant_params)
+    if @restaurant.save
+      flash[:notice] = "Restaurant saved successfully!"
+      redirect_to @restaurant
+    else
+      flash[:notice] = "Update failed"
+      render :new
+    end
+  end
+
+  def destroy
+    @restaurant = Restaurant.find(params[:id])
+    if @restaurant.owner?(current_user)
+      @restaurant.destroy
+      redirect_to restaurants_path, notice: 'Restaurant deleted successfully!'
+    else
+      flash[:notice] = "Your account is not authorized to view this page"
+    end
   end
 
   def create
@@ -32,4 +64,5 @@ class RestaurantsController < ApplicationController
     params.require(:restaurant).permit(:name, :address, :city,
                                        :description, :cuisine_id)
   end
+
 end

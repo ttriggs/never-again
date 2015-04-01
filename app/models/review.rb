@@ -6,5 +6,6 @@ class Review < ActiveRecord::Base
   # has_many :likes, dependent: :destroy
 
   validates :user, presence: true
+  validates :rating, presence: true, numericality: { minimum: RATINGS[0], maximum: RATINGS[-1]}
 
 end

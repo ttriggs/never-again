@@ -1,34 +1,52 @@
-<div class="my-h1"><%= @restaurant.name %></div>
+<div><%= @restaurant.name %></div>
 
-  <p>
-    <strong>Address:</strong><br>
-    <%= @restaurant.address %><br>
-  </p>
-  <p>
-    <strong>Type of Cuisine:</strong>
+  <div>
+    <div>Address:</div>
+    <%= @restaurant.address %>
+  </div>
+    <div>Rating:</div>
+    <%# @restaurant.rating %>
+  </div>
+    <div>City:</div>
+    <%= @restaurant.city %>
+  </div>
+  <div>
+    <div>Type of Cuisine:</div>
     <% if @restaurant.cuisine.present? %>
       <%= @restaurant.cuisine.name %>
     <% else %>
       Uncategorized
     <% end %>
-  </p>
-  <p>
-    <strong>Description:</strong>
+  </div>
+  <div>
+    <div>Description:</div>
     <%= @restaurant.description %>
-  </p>
+  </div>
 
+<% if @restaurant.owner?(current_user) %>
+  <%= link_to 'Edit Restaurant', edit_restaurant_path(@restaurant) -%> |
+  <%= link_to 'Delete Restaurant', restaurant_path(@restaurant), method: :delete %>
+<% end %>
 
-<%= link_to 'Add a Review for this Restaurant', new_restaurant_review_path(@restaurant) %><br>
+<%= link_to 'Back to all restaurants', restaurants_path %>
 
-<div class="my-h3">Reviews</div>
+<%= link_to 'Add a Review for this Restaurant', new_restaurant_review_path(@restaurant) %>
 
-  <ul>
+<div>Reviews</div>
+
+<% if user_signed_in? %>
+  <%= render '/reviews/form' %>
+<% else %>
+  <%= link_to 'Sign in to add a review', new_user_session_path %>
+<% end %>
+
+  <div>
     <% if @restaurant.reviews.none? %>
-      <p><strong> No Reviews yet for this restaurant </strong></p>
+      <div><strong> No Reviews yet for this restaurant </strong></div>
     <%-else-%>
       <% @restaurant.reviews.order('created_at desc').each do |review| %>
-        <p>
-          <div class="review-box">
+        <div>
+          <div>
             <li><strong>Rating(1-5): </strong>
             <strong><%= review.rating %></strong>
             </li>
@@ -39,9 +57,10 @@
             <%= review.created_at %>
             </li>
           </div>
-        </p>
+        </div>
       <%-end-%>
     <%-end-%>
-  </ol>
+  </div>
+
 
 <%= link_to 'Back to all restaurants', restaurants_path %>

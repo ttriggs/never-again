@@ -26,7 +26,7 @@ feature 'view restaurants' do
       expect(page).to have_content(restaurant.description)
       expect(page).to have_content(restaurant.address)
       expect(page).to have_content(restaurant.city)
-      expect(page).to have_content(restaurant.cuisine)
+      expect(page).to have_content(restaurant.cuisine.name)
       expect(page).to have_content('Rating')
       expect(page).to have_content('Reviews')
     end
