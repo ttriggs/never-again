@@ -11,7 +11,7 @@ feature "user deletes account", %{
   scenario "user deletes account" do
     user = FactoryGirl.create(:user)
 
-    click_button "Sign up"
+    sign_in_as(user)
 
     click_button "My account"
     click_button "Delete"
