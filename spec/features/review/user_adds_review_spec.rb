@@ -30,3 +30,11 @@ feature "Add a review for a restaurant", %q(
   end
 
 end
+
+
+    visit upvote_path(vote)
+
+    visit downvote_path(vote)
+
+    visit upvote_path(vote, method: :delete)
+    visit downvote_path(vote, method: :delete)

@@ -27,6 +27,11 @@ FactoryGirl.define do
     restaurant
   end
 
+  factory :vote do
+    user
+    review
+  end
+
   factory :cuisine do
     sequence(:name) { |n| "sea-food#{n}" }
   end

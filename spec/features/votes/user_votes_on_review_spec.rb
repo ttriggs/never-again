@@ -1,94 +1,97 @@
 require 'rails_helper'
 
-feature 'creating and updating vote' do
+feature 'review voting' do
+  let(:review) { FactoryGirl.create(:review) }
+
   context 'as an authorized user' do
     let(:user) { FactoryGirl.create(:user) }
-    let(:restaurant) { FactoryGirl.build(:restaurant, user: user) }
 
     before :each do
-      sign_in_as user
+      sign_in_as(user)
     end
 
-    scenario 'I can successfully up vote a review' do
-      review = FactoryGirl.create(:review, restaurant: restaurant)
+    scenario 'up vote a review' do
       visit review_path(review)
 
-      click_button 'Upvote Review'
+      within '.question-votes' do
+        find("#upvote").click
+      end
 
+      within '.question-votes .total_votes' do
+        expect(page).to have_content "1"
+      end
       expect(page).to have_content('Upvote saved!')
-      expect(page).to have_content(restaurant.name)
-      expect(page).to have_content(review.body)
     end
 
-    scenario 'I can successfully down vote a review' do
-      review = FactoryGirl.create(:review, restaurant: restaurant)
+    scenario 'down vote a review' do
       visit review_path(review)
 
-      click_button 'Downvote Review'
+      within '.question-votes' do
+        find("#downvote").click
+      end
 
+      within '.question-votes .total_votes' do
+        expect(page).to have_content "-1"
+      end
       expect(page).to have_content('Downvote saved!')
-      expect(page).to have_content(restaurant.name)
-      expect(page).to have_content(review.body)
-    end
-
-    scenario 'I cannot up vote a review multiple times' do
-      review = FactoryGirl.create(:review, restaurant: restaurant)
-      visit review_path(review)
-
-      click_button 'Upvote Review'
-      click_button 'Upvote Review'
-
-      expect(page).to have_content('Already voted on review!')
     end
 
     scenario 'I cannot down vote a review multiple times' do
-      review = FactoryGirl.create(:review, restaurant: restaurant)
       visit review_path(review)
 
-      click_button 'Downvote Review'
-      click_button 'Downvote Review'
+      within '.question-votes' do
+        find("#downvote").click
+        find("#downvote").click
+      end
 
+      within '.question-votes .total_votes' do
+        expect(page).to have_content "-1"
+      end
       expect(page).to have_content('Already voted on review!')
     end
 
-    scenario 'I can change up vote to downvote' do
-      review = FactoryGirl.create(:review, restaurant: restaurant)
+    scenario 'change up vote to downvote' do
       visit review_path(review)
 
-      click_button 'Upvote Review'
-      click_button 'Downvote Review'
+      within '.question-votes' do
+        find("#upvote").click
+        find("#downvote").click
+        find("#downvote").click
+      end
 
+      within '.question-votes .total_votes' do
+        expect(page).to have_content "-1"
+      end
       expect(page).to have_content('Downvote saved!')
     end
 
-    scenario 'I can change up vote to downvote' do
-      review = FactoryGirl.create(:review, restaurant: restaurant)
-      visit review_path(review)
-
-      click_button 'Downvote Review'
-      click_button 'Upvote Review'
-
-      expect(page).to have_content('Upvote saved!')
-    end
-
     scenario 'I can delete my up vote' do
-      review = FactoryGirl.create(:review, restaurant: restaurant)
       visit review_path(review)
 
-      click_button 'Upvote Review'
-      click_button 'Delete Vote'
+      within '.question-votes' do
+        find("#upvote").click
+        find("#downvote").click
+      end
+      within '.question-votes .total_votes' do
+        expect(page).to have_content "0"
+      end
 
       expect(page).to have_content('Vote deleted!')
     end
+  end
 
-    scenario 'I can delete my down vote' do
-      review = FactoryGirl.create(:review, restaurant: restaurant)
+  context 'as a guest' do
+    scenario 'I do not see an upvote or downvote arrows' do
       visit review_path(review)
 
-      click_button 'Downvote Review'
-      click_button 'Delete Vote'
+      expect(page).to_not have_selector('#upvote')
+      expect(page).to_not have_selector('#downvote')
+    end
 
-      expect(page).to have_content('Vote deleted!')
+    scenario "I can see total votes a question has" do
+      visit question_path(question)
+
+      expect(page).to have_selector('.total_votes')
     end
   end
 end
