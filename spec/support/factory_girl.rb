@@ -5,7 +5,6 @@ FactoryGirl.define do
     sequence(:username) { |u| "usename#{u}" }
     sequence(:email) { |n| "user#{n}@example.com" }
     password 'password'
-    password_confirmation 'password'
   end
 
   factory :restaurant do
