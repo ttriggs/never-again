@@ -9,7 +9,7 @@ the users) do
 
     sign_in_as(admin)
     visit restaurants_path
-    click_on("View all users")
+    click_link("View all users")
 
     expect(page).to have_content(admin.username)
     expect(page).to have_content(user.username)

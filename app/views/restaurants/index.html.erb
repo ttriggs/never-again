@@ -17,5 +17,10 @@
     </ol>
   </div>
 </div>
-
 <br>
+
+<div>
+  <% if user_signed_in? && current_user.admin? %>
+    <%= link_to "View all users", admin_users_path %>
+  <% end %>
+</div>
