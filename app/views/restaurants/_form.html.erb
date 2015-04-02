@@ -6,10 +6,10 @@
       <ul>
       <% @restaurant.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
+      <%-end-%>
       </ul>
     </div>
-  <% end %>
+  <%-end-%>
 
   <div class="field">
     <%= f.label :name %>
@@ -40,4 +40,4 @@
     <%= f.submit class: "small radius button" %>
   </div>
 
-<% end %>
+<%-end-%>

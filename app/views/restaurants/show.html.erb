@@ -14,9 +14,9 @@
     <div>Type of Cuisine:</div>
     <% if @restaurant.cuisine.present? %>
       <%= @restaurant.cuisine.name %>
-    <% else %>
+    <%-else-%>
       Uncategorized
-    <% end %>
+    <%-end-%>
   </div>
   <div>
     <div>Description:</div>
@@ -26,7 +26,7 @@
 <% if @restaurant.owner?(current_user) %>
   <%= link_to 'Edit Restaurant', edit_restaurant_path(@restaurant) -%> |
   <%= link_to 'Delete Restaurant', restaurant_path(@restaurant), method: :delete %>
-<% end %>
+<%-end-%>
 
 <%= link_to 'Back to all restaurants', restaurants_path %>
 
@@ -36,9 +36,9 @@
 
 <% if user_signed_in? %>
   <%= render '/reviews/form' %>
-<% else %>
+<%-else-%>
   <%= link_to 'Sign in to add a review', new_user_session_path %>
-<% end %>
+<%-end-%>
 
   <div>
     <% if @restaurant.reviews.none? %>
@@ -64,7 +64,7 @@
                 <%= link_to "Delete review", review_path(review), method: :delete %>
                 <%= link_to "Edit Review", edit_restaurant_review_path(review.restaurant, review) %>
               </div>
-            <% end %>
+            <%-end-%>
           </div>
         </div>
       <%-end-%>

@@ -7,10 +7,10 @@
       <ul>
       <% @review.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
+      <%-end-%>
       </ul>
     </div>
-  <% end %>
+  <%-end-%>
 
   <div class="field">
     <%= f.label :rating %>
@@ -25,4 +25,4 @@
   <div class="actions">
     <%= f.submit class: "small radius button" %>
   </div>
-<% end %>
+<%-end-%>
