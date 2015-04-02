@@ -28,13 +28,4 @@ feature "Add a review for a restaurant", %q(
 
     expect(page).to_not have_link("Create Review")
   end
-
 end
-
-
-    visit upvote_path(vote)
-
-    visit downvote_path(vote)
-
-    visit upvote_path(vote, method: :delete)
-    visit downvote_path(vote, method: :delete)
