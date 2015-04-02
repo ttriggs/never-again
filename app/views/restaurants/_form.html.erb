@@ -1,15 +1,17 @@
 <%= form_for(@restaurant) do |f| %>
   <% if @restaurant.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
+      <div>
+        <%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:
+      </div>
 
       <ul>
-      <% @restaurant.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <%-end-%>
+        <% @restaurant.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
-  <%-end-%>
+<% end %>
 
   <div class="field">
     <%= f.label :name %>
@@ -40,4 +42,4 @@
     <%= f.submit class: "small radius button" %>
   </div>
 
-<%-end-%>
+<% end %>
