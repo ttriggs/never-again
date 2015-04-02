@@ -8,6 +8,10 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
+  factory :admin_user, parent: :user do
+    role 'admin'
+  end
+
   factory :restaurant do
     name "Captain D's"
     address "34 columbus avenue"
