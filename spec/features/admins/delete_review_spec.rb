@@ -6,7 +6,7 @@ feature "Delete a review", %q( As an admin I want to be able to delete
   scenario "Admin can delete a review they did not make" do
     review = FactoryGirl.create(:review)
     restaurant = review.restaurant
-    admin = FactoryGirl.create(:admin_user)
+    admin = FactoryGirl.create(:user, role: "admin")
 
     sign_in_as(admin)
     visit restaurant_path(restaurant)

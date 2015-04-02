@@ -5,7 +5,7 @@ feature "Delete a user", %q( As an admin I want to be able to delete
 
   scenario "Admin can delete a user that is not their own account" do
     user = FactoryGirl.create(:user)
-    admin = FactoryGirl.create(:admin_user)
+    admin = FactoryGirl.create(:user, role: "admin")
 
     sign_in_as(admin)
     visit user_path(user)
@@ -15,11 +15,11 @@ feature "Delete a user", %q( As an admin I want to be able to delete
   end
 
   scenario "User can not delete a user that is not their own account" do
-    user = FactoryGirl.create(:user)
-    signed_in_user = FactoryGirl.create(:user)
+    user1 = FactoryGirl.create(:user)
+    user2 = FactoryGirl.create(:user)
 
-    sign_in_as(signed_in_user)
-    visit user_path(user)
+    sign_in_as(user1)
+    visit user_path(user2)
 
     expect(page).to_not have_content("Delete user")
   end
