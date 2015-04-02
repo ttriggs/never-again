@@ -47,21 +47,24 @@
       <% @restaurant.reviews.order('created_at desc').each do |review| %>
         <div>
           <div>
+            <%# link_to "Up vote",  id: review.id %>
+            <%# link_to "Down vote", id: review.id %>
+            <div>Rating(1-5):
+              <%= review.rating %>
+            </div>
+            <div>Review:
+              <%= review.body %>
+            </div>
+            <div>Submitted On:
+              <%= review.created_at %>
+            </div>
+
             <% if current_user == review.user %>
               <div>
                 <%= link_to "Delete review", review_path(review), method: :delete %>
                 <%= link_to "Edit Review", edit_restaurant_review_path(review.restaurant, review) %>
               </div>
             <% end %>
-            <div>Rating(1-5):
-            <%= review.rating %>
-            </div>
-            <div>Review:
-            <%= review.body %>
-            </div>
-            <div>Submitted On:
-            <%= review.created_at %>
-            </div>
           </div>
         </div>
       <%-end-%>
