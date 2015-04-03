@@ -9,7 +9,7 @@ feature "Delete a user", %q( As an admin I want to be able to delete
 
     sign_in_as(admin)
     visit admin_users_path
-    within("ol li:first-child") { click_on("Delete user") }
+    within(".user-details:first-child") { click_on("Delete user") }
 
     expect(page).to have_content("User deleted")
   end

@@ -4,14 +4,14 @@
   <div class="medium-10 columns">
     <ol>
       <% @users.each do |user| %>
-        <div>
+        <div class="user-details">
           <li>
-            <p><%= user.username %></p>
-            <p><%= user.email %></p>
-            <p><%= user.role %></p>
-            <p><%= user.remember_created_at %></p>
-            <p><%= user.sign_in_count %></p>
-            <p><%= user.last_sign_in_at %></p>
+            <p>Username: <%= user.username %></p>
+            <p>Email: <%= user.email %></p>
+            <p>Role: <%= user.role %></p>
+            <p>Created at: <%= user.created_at %></p>
+            <p>Sign in count: <%= user.sign_in_count %></p>
+            <p>Last sign in: <%= user.last_sign_in_at %></p>
             <%= link_to "Delete user", admin_user_path(user), method: :delete %>
           </li>
         </div>
