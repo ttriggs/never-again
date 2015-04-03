@@ -30,6 +30,13 @@
     <%= link_to 'Edit Restaurant', edit_restaurant_path(@restaurant) %>
   </div>
   |
+<% end %>
+
+<% if current_user.admin? %>
+  <div>
+    <%= link_to 'Delete Restaurant', admin_restaurant_path(@restaurant), method: :delete %>
+  </div>
+<% elsif @restaurant.owner?(current_user) %>
   <div>
     <%= link_to 'Delete Restaurant', restaurant_path(@restaurant), method: :delete %>
   </div>
@@ -73,11 +80,16 @@
           <div>Submitted On:
             <div><%= review.created_at %></div>
           </div>
-
-          <% if current_user == review.user %>
+          <% if current_user.admin?%>
+            <div>
+              <%= link_to "Delete review", admin_review_path(review), method: :delete %>
+            </div>
+          <% elsif current_user == review.user %>
             <div>
               <%= link_to "Delete review", review_path(review), method: :delete %>
             </div>
+          <% end %>
+          <% if current_user == review.user %>
             <div>
               <%= link_to "Edit Review", edit_restaurant_review_path(review.restaurant, review) %>
             </div>
