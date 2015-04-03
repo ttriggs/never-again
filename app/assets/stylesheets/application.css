@@ -15,3 +15,61 @@
  *= require foundation_and_overrides
 
  */
+
+
+@media only screen and (min-width: 40.063em) {
+  .top-bar {
+    background: #333333;
+    overflow: visible;
+    opacity: 0.8;
+  }
+  .sticky {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    border-top: 0;
+  }
+}
+
+.splash {
+  background-image: url('city.png');
+  background-repeat: no-repeat;
+
+  background-size: cover;
+  background-position: relative;
+  height: 400px;
+}
+
+.parallax {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.parallax__layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.parallax__layer--base {
+  transform: translateZ(0);
+}
+
+.parallax__layer--back {
+  background-image: url('city.png');
+    background-repeat: no-repeat;
+
+  background-size: cover;
+  background-position: relative;
+  height: 700px;
+
+  transform: translateZ(-1px) scale(2);
+}
+
+.parallax__layer--deep {
+  transform: translateZ(-2px) scale(3);
+}

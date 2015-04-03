@@ -54,7 +54,7 @@ gem 'factory_girl_rails', group: [:development, :test]
 gem 'valid_attribute', group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
-gem 'foundation-rails'
+gem 'foundation-rails', "5.5.1.0"
 
 group :test do
   gem 'coveralls', require: false
