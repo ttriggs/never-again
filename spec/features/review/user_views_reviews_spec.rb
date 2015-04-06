@@ -10,7 +10,7 @@ feature "View all reviews for a restaurant", %q(
   pages" do
     restaurant = FactoryGirl.create(:restaurant)
     next_page_review = FactoryGirl.create(
-    :review, restaurant: restaurant, body: "this review is on the next page"
+      :review, restaurant: restaurant, body: "this review is on the next page"
     )
     reviews = Array.new
     10.times do |r|
