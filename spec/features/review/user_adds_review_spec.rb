@@ -6,11 +6,12 @@ feature "Add a review for a restaurant", %q(
   so I can tell others just how bad it is
 ) do
 
-  scenario "Authenticated user successfully adds a review for a restaurant" do
+  scenario "Authenticated user successfully adds a review and the user who
+    added the restaurant recieves an email", focus: true do
     restaurant = FactoryGirl.create(:restaurant)
-
     user = FactoryGirl.create(:user)
     sign_in_as(user)
+
 
     visit restaurant_path(restaurant)
     select("2", from: "Rating")
@@ -18,6 +19,7 @@ feature "Add a review for a restaurant", %q(
     click_on("Create Review")
 
     expect(page).to have_content ("Review saved successfully.")
+    expect(ActionMailer::Base.deliveries.count).to eq(1)
   end
 
   scenario "Unathenticated user doesn't see create review link" do
