@@ -7,7 +7,7 @@ feature "View all reviews for a restaurant", %q(
 ) do
 
   scenario "user views all reviews for a restaurant on their appropriate
-    pages" do
+  pages" do
     restaurant = FactoryGirl.create(:restaurant)
     next_page_review = FactoryGirl.create(
     :review, restaurant: restaurant, body: "this review is on the next page"
@@ -22,7 +22,6 @@ feature "View all reviews for a restaurant", %q(
     expect(page).to_not have_content(next_page_review.body)
 
     click_link "Next"
-    
     expect(page).to have_content(next_page_review.body)
     expect(page).to_not have_content(reviews.last.body)
   end
