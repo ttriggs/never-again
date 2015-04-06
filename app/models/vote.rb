@@ -5,7 +5,7 @@ class Vote < ActiveRecord::Base
   belongs_to :review
 
   validates :user, presence: true
-  validates_uniqueness_of :user, scope: [:vote_id, :review_id]
+  validates_uniqueness_of :user, scope: [:id, :review_id]
 
   after_update :update_vote_cache
 
@@ -18,8 +18,8 @@ class Vote < ActiveRecord::Base
   end
 
   def update_vote_cache
-    votable.vote_cache = votable.total_votes
-    votable.save!
+    review.vote_cache = review.total_votes
+    review.save!
   end
 
   def increment
@@ -44,24 +44,6 @@ class Vote < ActiveRecord::Base
 
   def can_downvote?
     score >= 0 && score <= 1
-  end
-
-  def total_votes
-    votes.sum(:score)
-  end
-
-  def increment_vote(user)
-    fetch_vote(user).increment
-  end
-
-  def decrement_vote(user)
-    fetch_vote(user).decrement
-  end
-
-  private
-
-  def fetch_vote(user, review)
-    Vote.find_or_create_by(user: user, review: review)
   end
 
 end
