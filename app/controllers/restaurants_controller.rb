@@ -3,14 +3,15 @@ class RestaurantsController < ApplicationController
 
   def index
     if params[:search]
-      @restaurants = Restaurant.search(params[:search]).order('created_at desc')
+      @restaurants = Restaurant.search(params[:search]).order('created_at desc').page params[:page]
     else
-      @restaurants = Restaurant.order('created_at desc').limit(30)
+      @restaurants = Restaurant.order('created_at desc').page params[:page]
     end
   end
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @reviews = @restaurant.reviews.order('created_at desc').page params[:page]
     @review = Review.new
   end
 

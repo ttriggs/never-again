@@ -11,4 +11,6 @@ class Review < ActiveRecord::Base
 
   validates :rating, presence: true,
              inclusion: { in: RATINGS }
+
+  paginates_per 10
 end
