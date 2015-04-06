@@ -5,7 +5,10 @@ Rails.application.routes.draw do
     resources :reviews, only: [:show, :new, :create, :edit, :update]
   end
   resources :users, only: [:show]
-  resources :reviews, only: [:destroy]
+  resources :reviews, only: [:destroy] do
+    resources :upvotes, only: :create
+    resources :downvotes, only: :create
+  end
 
   namespace :admin do
     resources :users, only: [:index, :destroy]

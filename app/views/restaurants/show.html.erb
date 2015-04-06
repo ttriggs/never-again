@@ -50,6 +50,7 @@
   <%= link_to 'Add a Review for this Restaurant', new_restaurant_review_path(@restaurant) %>
 </div>
 
+
 <div>Reviews</div>
 
 <% if user_signed_in? %>
@@ -69,8 +70,6 @@
     <% @restaurant.reviews.order('created_at desc').each do |review| %>
       <div>
         <div>
-          <%# link_to "Up vote",  id: review.id %>
-          <%# link_to "Down vote", id: review.id %>
           <div>Rating(1-5):
             <div><%= review.rating %></div>
           </div>
@@ -79,6 +78,10 @@
           </div>
           <div>Submitted On:
             <div><%= review.created_at %></div>
+          </div>
+          <div class="review-votes">
+            <%= link_to "Up vote", review_upvotes_path(review), class: "tiny radius button alert", id: "upvote", method: :post %>
+            <%= link_to "Down vote", review_downvotes_path(review), class: "tiny radius button alert", id: "downvote", method: :post %>
           </div>
           <% if current_user.admin?%>
             <div>
