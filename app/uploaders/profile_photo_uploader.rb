@@ -1,42 +1,6 @@
 # encoding: utf-8
 
-class AvatarUploader < CarrierWave::Uploader::Base
-  if Rails.env.production? || Rails.env.development?
-    storage :fog
-  else
-    storage :file
-  end
-
-  include CarrierWave::MiniMagick
-     process resize_to_fit: [800, 800]
-
-   version :thumb do
-     process resize_to_fill: [200,200]
-   end
-
-   def default_url
-     "/assets/default_images/" + [version_name, "default_photo.jpg"].compact.join('_')
-   end
-
-  uploader = AvatarUploader.new
-
-  uploader.store!(my_file)
-
-  uploader.retrieve_from_store!('my_file.png')
-  u = User.new
-  u.avatar = params[:file] # Assign a file like this, or
-  u.save!
-  u.avatar.url # => '/url/to/file.png'
-  u.avatar.current_path # => 'path/to/file.png'
-  u.avatar.identifier # => 'file.png'
-
-  def extension_white_list
-    %w(jpg jpeg gif png)
-  end
-
-  def default_url(*args)
-    ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
-  end
+class ProfilePhotoUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -49,13 +13,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "/public/uploads/user/avatar/#{user.id}/file_name"
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
-
-  def cache_dir
-    '/tmp/projectname-cache'
-  end
-
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
@@ -88,4 +47,5 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
 end

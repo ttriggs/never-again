@@ -12,6 +12,7 @@ feature "user registers", %{
     fill_in "Email", with: "john@example.com"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
+    fill_in "Avatar", with: "/app/assets/imgages/default_images/default_photo.jpg"
 
     click_button "Sign up"
 

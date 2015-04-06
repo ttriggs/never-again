@@ -16,6 +16,7 @@ feature "user updates user information", %{
     fill_in "Username", with: "janedoe"
     fill_in "Email", with: "pops@aol.com"
     fill_in "Current password", with: user.password
+    fill_in "Avatar", with: "/app/assets/imgages/default_images/default_photo.jpg"
 
     click_button "Update my Account"
 

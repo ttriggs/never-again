@@ -60,6 +60,7 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'carrierwave'
 gem 'fog'
+gem 'fog-aws'
 
 group :test do
   gem 'coveralls', require: false

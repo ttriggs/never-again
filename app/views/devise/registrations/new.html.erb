@@ -25,10 +25,19 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
+
   <div class="field">
     <%= f.label :avatar %>
     <%= f.file_field :avatar %>
     <%= f.input :avatar, type: :file %>
+  </div>
+
+  <div>
+   <label>
+     <%= f.check_box :remove_avatar %>
+     Remove avatar
+   </label>
+  </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
