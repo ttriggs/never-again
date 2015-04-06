@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402140834) do
+ActiveRecord::Schema.define(version: 20150406153246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,14 +21,6 @@ ActiveRecord::Schema.define(version: 20150402140834) do
   end
 
   add_index "cuisines", ["name"], name: "index_cuisines_on_name", unique: true, using: :btree
-
-  create_table "likes", force: :cascade do |t|
-    t.integer  "user_id",                    null: false
-    t.integer  "review_id",                  null: false
-    t.boolean  "like",       default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
 
   create_table "restaurants", force: :cascade do |t|
     t.string   "name",        null: false
@@ -70,5 +62,15 @@ ActiveRecord::Schema.define(version: 20150402140834) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "user_id",                null: false
+    t.integer  "review_id",              null: false
+    t.integer  "score",      default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "votes", ["user_id", "review_id"], name: "index_votes_on_user_id_and_review_id", unique: true, using: :btree
 
 end
