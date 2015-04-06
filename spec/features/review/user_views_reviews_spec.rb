@@ -6,14 +6,24 @@ feature "View all reviews for a restaurant", %q(
   so I can see just how bad the restaurant is
 ) do
 
-  scenario "user views all reviews for a restaurant" do
+  scenario "user views all reviews for a restaurant on their appropriate
+    pages" do
     restaurant = FactoryGirl.create(:restaurant)
-    review_one = FactoryGirl.create(:review, restaurant: restaurant)
-    review_two = FactoryGirl.create(:review, restaurant: restaurant)
+    next_page_review = FactoryGirl.create(
+    :review, restaurant: restaurant, body: "this review is on the next page"
+    )
+    reviews = Array.new
+    10.times do |r|
+      reviews << FactoryGirl.create(:review, restaurant: restaurant)
+    end
 
     visit restaurant_path(restaurant)
+    expect(page).to have_content(reviews.last.rating)
+    expect(page).to_not have_content(next_page_review.body)
 
-    expect(page).to have_content (review_one.rating)
-    expect(page).to have_content (review_two.body)
+    click_link "Next"
+    
+    expect(page).to have_content(next_page_review.body)
+    expect(page).to_not have_content(reviews.last.body)
   end
 end
