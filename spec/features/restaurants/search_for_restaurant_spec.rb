@@ -14,5 +14,14 @@ feature 'search for restaurants' do
       expect(page).to have_link(restaurant.name)
     end
 
+    scenario 'I fail to find a restaurant not matching my search pattern' do
+      restaurant = FactoryGirl.create(:restaurant)
+
+      visit restaurants_path
+      fill_in 'search', with: "89j1298312io3n123onisfeafe8"
+      click_on 'Search'
+
+      expect(page).to_not have_link(restaurant.name)
+    end
   end
 end
