@@ -13,11 +13,11 @@ feature 'review voting' do
     scenario 'up vote a review' do
       visit review_path(review)
 
-      within '.question-votes' do
+      within '.review-votes' do
         find("#upvote").click
       end
 
-      within '.question-votes .total_votes' do
+      within '.review-votes .total_votes' do
         expect(page).to have_content "1"
       end
       expect(page).to have_content('Upvote saved!')
@@ -26,11 +26,11 @@ feature 'review voting' do
     scenario 'down vote a review' do
       visit review_path(review)
 
-      within '.question-votes' do
+      within '.review-votes' do
         find("#downvote").click
       end
 
-      within '.question-votes .total_votes' do
+      within '.review-votes .total_votes' do
         expect(page).to have_content "-1"
       end
       expect(page).to have_content('Downvote saved!')
@@ -39,12 +39,12 @@ feature 'review voting' do
     scenario 'I cannot down vote a review multiple times' do
       visit review_path(review)
 
-      within '.question-votes' do
+      within '.review-votes' do
         find("#downvote").click
         find("#downvote").click
       end
 
-      within '.question-votes .total_votes' do
+      within '.review-votes .total_votes' do
         expect(page).to have_content "-1"
       end
       expect(page).to have_content('Already voted on review!')
@@ -53,13 +53,13 @@ feature 'review voting' do
     scenario 'change up vote to downvote' do
       visit review_path(review)
 
-      within '.question-votes' do
+      within '.review-votes' do
         find("#upvote").click
         find("#downvote").click
         find("#downvote").click
       end
 
-      within '.question-votes .total_votes' do
+      within '.review-votes .total_votes' do
         expect(page).to have_content "-1"
       end
       expect(page).to have_content('Downvote saved!')
@@ -68,11 +68,11 @@ feature 'review voting' do
     scenario 'I can delete my up vote' do
       visit review_path(review)
 
-      within '.question-votes' do
+      within '.review-votes' do
         find("#upvote").click
         find("#downvote").click
       end
-      within '.question-votes .total_votes' do
+      within '.review-votes .total_votes' do
         expect(page).to have_content "0"
       end
 
@@ -88,8 +88,8 @@ feature 'review voting' do
       expect(page).to_not have_selector('#downvote')
     end
 
-    scenario "I can see total votes a question has" do
-      visit question_path(question)
+    scenario "I can see total votes a review has" do
+      visit review_path(review)
 
       expect(page).to have_selector('.total_votes')
     end
