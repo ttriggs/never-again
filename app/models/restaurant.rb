@@ -20,4 +20,8 @@ class Restaurant < ActiveRecord::Base
   def owner?(current_user)
     user == current_user
   end
+
+  def self.search(search)
+    where("name like ?", "%#{search}%")
+  end
 end
