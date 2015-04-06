@@ -1,5 +1,4 @@
 # encoding: utf-8
-
 class AvatarUploader < CarrierWave::Uploader::Base
   if Rails.env.production? || Rails.env.development?
     storage :fog
@@ -15,7 +14,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-   "/assets/default_images/" + [version_name, "default_photo.jpg"].compact.join('_')
+    "/assets/default_images/" + [version_name, "default_photo.jpg"].compact.join('_')
   end
 
   uploader = AvatarUploader.new
