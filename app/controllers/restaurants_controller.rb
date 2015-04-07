@@ -13,7 +13,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     @reviews = @restaurant.reviews.order('created_at desc').page params[:page]
     @review = Review.new
-    @google_query = @restaurant.address.gsub(/\s/, "%20") + ",%20Boston,%20MA"
+    @google_query = CGI::escape(@restaurant.address + ", Boston, MA")
   end
 
   def new
