@@ -31,6 +31,5 @@ class Review < ActiveRecord::Base
   def fetch_vote(user)
     Vote.find_or_create_by(user: user, review: self)
   end
-
   paginates_per 10
 end
