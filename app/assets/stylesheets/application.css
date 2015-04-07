@@ -17,41 +17,76 @@
  */
 
 
+.top-bar {
+  height: 100px;
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.78) 16%, rgba(0,0,0,0.6) 51%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.78)), color-stop(16%,rgba(0,0,0,0.78)), color-stop(51%,rgba(0,0,0,0.6)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.78) 16%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.78) 16%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.78) 16%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.78) 16%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c7000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
 
 
-@media only screen and (min-width: 40.063em) {
-  .top-bar {
-    overflow: visible;
-    height: 100px;
-    background: -moz-linear-gradient(top,  rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.78) 16%, rgba(0,0,0,0.6) 51%, rgba(0,0,0,0) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.78)), color-stop(16%,rgba(0,0,0,0.78)), color-stop(51%,rgba(0,0,0,0.6)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.78) 16%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.78) 16%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.78) 16%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.78) 16%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c7000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
-  }
-  .sticky {
-    position: fixed;
-    width: 100%;
-    left: 0;
-    top: 0;
-    z-index: 100;
-    border-top: 0;
-  }
+.top-bar-section li:not(.has-form) a:not(.button) {
+  font-size: 1em;
+  margin: 0.4em;
+  transition:  0.3s;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button):hover {
+  background: rgba(0,0,0,0.2) 0%;
+  border-radius: 25px;
+}
+
+.sticky {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  border-top: 0;
+}
+
+.search-bar {
+  margin: .5em;
+}
+
+
+.top-bar .name #my-h1 {
+  font-weight: bold;
+  width: 75%;
+  display: block;
+  margin: 1em;
+  width: auto;
+}
+
+#my-h1 a {
+  color: #FFFFFF;
+  text-decoration: none;
+  line-height: inherit;
 }
 
 .splash {
-  background-image: url('city.png');
+  background-image: url('city3.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 600px;
-  position:absolute;
-  left:0;
-  top:0;
+  position: relative;
+  left: 0px;
+  top: 0;
   width:100%;
   max-width:100%
   z-index: 0;
+}
+
+/*body #wrap #page-left-shadow{left:0px;top:0px;position:absolute;background-position:-14px 0;height:1px;width:8px;background-repeat:repeat-y;width:8px;height:100%}
+body #wrap #page-right-shadow{right:0px;top:0px;position:absolute;background-position:-24px 0;height:1px;width:8px;background-repeat:repeat-y;width:8px;height:100%}
+*/
+
+.my-h1 {
+
 }
 
 .top-bar-section ul li {
