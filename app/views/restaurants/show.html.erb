@@ -64,6 +64,7 @@
         <div>
           <%# link_to "Up vote",  id: review.id %>
           <%# link_to "Down vote", id: review.id %>
+          <div><%= image_tag review.user.profile_photo.thumb.to_s %>
           <div>Rating(1-5):
             <div><%= review.rating %></div>
           </div>

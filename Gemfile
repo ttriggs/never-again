@@ -61,6 +61,7 @@ gem 'foundation-rails'
 gem 'carrierwave'
 gem 'fog'
 gem 'fog-aws'
+gem 'mini_magick'
 
 group :test do
   gem 'coveralls', require: false

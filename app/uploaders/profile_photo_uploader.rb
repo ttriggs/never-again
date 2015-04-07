@@ -1,19 +1,42 @@
 # encoding: utf-8
-
 class ProfilePhotoUploader < CarrierWave::Uploader::Base
+  if Rails.env.production? || Rails.env.development?
+    storage :fog
+  else
+    storage :file
+  end
+
+  include CarrierWave::MiniMagick
+  process resize_to_fit: [800, 800]
+
+  version :thumb do
+    process resize_to_fill: [15, 15]
+  end
+
+  def default_url
+    "/assets/default_images/" + [version_name, "default_photo.jpg"].compact.join('_')
+  end
+
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  # storage :file
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
+
+  def cache_dir
+    '/tmp/neveragain-cache'
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -47,5 +70,4 @@ class ProfilePhotoUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
 end
