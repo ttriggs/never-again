@@ -1,8 +1,17 @@
 <div><%= @restaurant.name %></div>
-
 <div>
   <div>Address:</div>
   <div><%= @restaurant.address %></div>
+</div>
+<div class="map">
+  <iframe
+  width="400"
+  height="300"
+  frameborder="0" style="border:0"
+  src= "https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_MAPS_API_KEY"] %>
+  &q=<%= @google_query %>">
+</iframe>
+
 </div>
 <div>
   <div>Rating:</div>
@@ -29,7 +38,6 @@
   <div>
     <%= link_to 'Edit Restaurant', edit_restaurant_path(@restaurant) %>
   </div>
-  |
 <% end %>
 <% if current_user != nil && current_user.admin? %>
   <div>
