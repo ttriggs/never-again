@@ -30,14 +30,6 @@ class Vote < ActiveRecord::Base
     can_downvote? ? update_attributes(score: self.score -= 1) : false
   end
 
-  def upvote_cast?
-    score == 1
-  end
-
-  def downvote_cast?
-    score == -1
-  end
-
   def can_upvote?
     score <= 0
   end

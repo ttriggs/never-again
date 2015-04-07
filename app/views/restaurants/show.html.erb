@@ -81,6 +81,7 @@
           </div>
           <div class="review-votes">
             <%= link_to "Up vote", review_upvotes_path(review), class: "tiny radius button alert", id: "upvote", method: :post %>
+          <div class="total-votes"><%= pluralize(review.total_votes, "vote") %></div>
             <%= link_to "Down vote", review_downvotes_path(review), class: "tiny radius button alert", id: "downvote", method: :post %>
           </div>
           <% if current_user.admin?%>
