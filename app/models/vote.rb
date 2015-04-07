@@ -5,11 +5,11 @@ class Vote < ActiveRecord::Base
   belongs_to :review
 
   validates :user, presence: true
-  validates_uniqueness_of :user, scope: [:id, :review_id]
+  validates :user, uniqueness: { scope: [:id, :review_id] }
 
   after_update :update_vote_cache
 
-  def self.fetch_review(params) #derive votable
+  def self.fetch_review(params)
     if params[:review_id].present?
       Review.find(params[:review_id])
     else
@@ -37,5 +37,4 @@ class Vote < ActiveRecord::Base
   def can_downvote?
     score >= 0 && score <= 1
   end
-
 end

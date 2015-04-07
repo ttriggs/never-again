@@ -2,6 +2,7 @@ class DropOrigVotesTable < ActiveRecord::Migration
   def up
     drop_table :likes
   end
+
   def down
     create_table :likes do |t|
       t.integer :user_id, null: false
