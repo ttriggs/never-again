@@ -1,75 +1,57 @@
-<div><%= @restaurant.name %></div>
-<div>
-  <div>Address:</div>
-  <div><%= @restaurant.address %></div>
+<div class="restaurant-show-header"><h1><%= @restaurant.name %></h1></div>
+
+<div class="small-6 columns">
+  <div class="rating"><h3>Rating: </h3></div>
+  <div><%# @restaurant.rating %></div>
+
+  <div>
+  <% if @restaurant.cuisine.present? %>
+    <h6>Type of Cuisine: <%= @restaurant.cuisine.name %></h6>
+  <% else %>
+    <h6>Uncategorized></h6>
+  <% end %>
+  </div>
+
+  <div><p>Description: <%= @restaurant.description %></p></div>
 </div>
-<div class="map">
+
+<div class="small-6 columns">
   <iframe
   width="400"
   height="300"
   frameborder="0" style="border:0"
   src= "https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_MAPS_API_KEY"] %>
   &q=<%= @google_query %>">
-</iframe>
-
-</div>
-<div>
-  <div>Rating:</div>
-  <div><%# @restaurant.rating %></div>
-</div>
-<div>
-  <div>City:</div>
-  <div><%= @restaurant.city %></div>
-</div>
-<div>
-  <div>Type of Cuisine:</div>
-  <% if @restaurant.cuisine.present? %>
-    <div><%= @restaurant.cuisine.name %></div>
-  <% else %>
-    <div>Uncategorized></div>
-  <% end %>
-</div>
-<div>
-  <div>Description:</div>
-  <div><%= @restaurant.description %></div>
+  </iframe>
 </div>
 
-<% if @restaurant.owner?(current_user) %>
-  <div>
-    <%= link_to 'Edit Restaurant', edit_restaurant_path(@restaurant) %>
+
+<div class="small-12 columns">
+  <div id="restaurant-actions">
+    <% if @restaurant.owner?(current_user) %>
+      <div>
+        <%= link_to 'Edit Restaurant', edit_restaurant_path(@restaurant) %>
+      </div>
+    <% end %>
+    <% if current_user != nil && current_user.admin? %>
+      <div>
+        <%= link_to 'Delete Restaurant', admin_restaurant_path(@restaurant), method: :delete %>
+      </div>
+    <% elsif @restaurant.owner?(current_user) %>
+      <div>
+        <%= link_to 'Delete Restaurant', restaurant_path(@restaurant), method: :delete %>
+      </div>
+    <% end %>
+    <div>
+      <%= link_to 'Add a Review for this Restaurant', new_restaurant_review_path(@restaurant) %>
+    </div>
+    <div>
+      <%= link_to 'Back to all restaurants', restaurants_path %>
+    </div>
   </div>
-<% end %>
-<% if current_user != nil && current_user.admin? %>
-  <div>
-    <%= link_to 'Delete Restaurant', admin_restaurant_path(@restaurant), method: :delete %>
-  </div>
-<% elsif @restaurant.owner?(current_user) %>
-  <div>
-    <%= link_to 'Delete Restaurant', restaurant_path(@restaurant), method: :delete %>
-  </div>
-<% end %>
-
-<div>
-  <%= link_to 'Back to all restaurants', restaurants_path %>
 </div>
-
-<div>
-  <%= link_to 'Add a Review for this Restaurant', new_restaurant_review_path(@restaurant) %>
-</div>
-
 
 <div>Reviews</div>
-
-<% if user_signed_in? %>
-  <div>
-    <%= render '/reviews/form' %>
-  </div>
-<% else %>
-  <div>
-    <%= link_to 'Sign in to add a review', new_user_session_path %>
-  </div>
-<% end %>
-
 <div>
   <% if @reviews.empty? %>
     <div> No Reviews yet for this restaurant </div>
