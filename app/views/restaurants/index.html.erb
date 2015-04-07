@@ -1,8 +1,5 @@
-
-<div>All Restaurants</div>
-
 <div>
-  <%= button_to 'New Restaurant', new_restaurant_path, class: "small button radius " %>
+  <%= link_to 'New Restaurant', new_restaurant_path, class: "small button radius " %>
 </div>
 
 <div class="row">
@@ -17,6 +14,11 @@
     </ol>
   </div>
 </div>
-
+<%= paginate @restaurants %>
 <br>
 
+<div>
+  <% if user_signed_in? && current_user.admin? %>
+    <%= link_to "View all users", admin_users_path %>
+  <% end %>
+</div>

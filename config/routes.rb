@@ -3,9 +3,15 @@ Rails.application.routes.draw do
   root 'homes#index'
   resources :restaurants do
     resources :reviews, only: [:show, :new, :create, :edit, :update]
-    resources :upvotes, only: :create
-    resources :downvotes, only: :create
   end
   resources :users, only: [:show]
-  resources :reviews, only: [:destroy]
+  resources :reviews, only: [:destroy] do
+    resources :votes, only: :create
+  end
+
+  namespace :admin do
+    resources :users, only: [:index, :destroy]
+    resources :reviews, only: [:destroy]
+    resources :restaurants, only: [:destroy]
+  end
 end
