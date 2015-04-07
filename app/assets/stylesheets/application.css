@@ -17,9 +17,45 @@
  */
 
 
+#masthead.videogamepage.fallback #key-art img.key-art{position:absolute;left:0;top:0;width:100%;max-width:100%}
+
+body  .semitransparent-bg{-webkit-transition-property:all;
+  -moz-transition-property:all;
+-ms-transition-property:all;
+-o-transition-property:all;
+transition-property:all;
+-webkit-transition-duration:500ms;
+-moz-transition-duration:500ms;
+-ms-transition-duration:500ms;
+-o-transition-duration:500ms;
+transition-duration:500ms;
+top:0;
+left:0;
+height:60px;
+background:rgba(0,0,0,0.85)}
+body #wrap #inner-wrap div#banner .banner-background .gradient-bg{-webkit-transition-property:all;
+  -moz-transition-property:all;
+-ms-transition-property:all;
+-o-transition-property:all;
+transition-property:all;
+-webkit-transition-duration:500ms;
+-moz-transition-duration:500ms;
+-ms-transition-duration:500ms;
+-o-transition-duration:500ms;
+transition-duration:500ms;
+top:0;
+left:0;
+height:225px;
+background-position:0 -108px;
+height:225px;
+width:1px;
+width:100%;
+background-repeat:repeat-x}
+
+
 @media only screen and (min-width: 40.063em) {
   .top-bar {
-    background: #333333;
+    /*background: #333333;*/
     overflow: visible;
     opacity: 0.8;
   }
@@ -38,7 +74,10 @@
   background-repeat: no-repeat;
 
   background-size: cover;
-  background-position: relative;
+  background-position: fixed;
+  left: -20;
+  top: -20;
+
   height: 400px;
 }
 
