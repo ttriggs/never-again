@@ -31,8 +31,7 @@
   </div>
   |
 <% end %>
-
-<% if current_user.admin? %>
+<% if current_user != nil && current_user.admin? %>
   <div>
     <%= link_to 'Delete Restaurant', admin_restaurant_path(@restaurant), method: :delete %>
   </div>
@@ -64,10 +63,10 @@
 <% end %>
 
 <div>
-  <% if @restaurant.reviews.none? %>
+  <% if @reviews.empty? %>
     <div> No Reviews yet for this restaurant </div>
   <% else %>
-    <% @restaurant.reviews.order('created_at desc').each do |review| %>
+    <% @reviews.each do |review| %>
       <div>
         <div>
           <div>Rating(1-5):
@@ -80,11 +79,11 @@
             <div><%= review.created_at %></div>
           </div>
           <div class="review-votes">
-            <%= link_to "Up vote", review_votes_path(review, type: "Upvote"), class: "tiny radius button alert", id: "upvote", method: :post %>
+            <%= link_to "Up vote", review_votes_path(review, type: "Upvote"), class: "tiny radius button alert", id: "upvote-button", method: :post %>
           <div class="total-votes"><%= pluralize(review.total_votes, "vote") %></div>
-            <%= link_to "Down vote", review_votes_path(review, type: "Downvote"), class: "tiny radius button alert", id: "downvote", method: :post %>
+            <%= link_to "Down vote", review_votes_path(review, type: "Downvote"), class: "tiny radius button alert", id: "downvote-button", method: :post %>
           </div>
-          <% if current_user.admin?%>
+          <% if current_user != nil && current_user.admin? %>
             <div>
               <%= link_to "Delete review", admin_review_path(review), method: :delete %>
             </div>
@@ -101,6 +100,7 @@
         </div>
       </div>
     <% end %>
+    <%= paginate @reviews %>
   <% end %>
 </div>
 

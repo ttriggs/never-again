@@ -3,18 +3,23 @@
 <div class="row">
   <div class="medium-10 columns">
     <ol>
-      <% @users.each do |user| %>
-        <div class="user-details">
-          <li>
-            <p>Username: <%= user.username %></p>
-            <p>Email: <%= user.email %></p>
-            <p>Role: <%= user.role %></p>
-            <p>Created at: <%= user.created_at %></p>
-            <p>Sign in count: <%= user.sign_in_count %></p>
-            <p>Last sign in: <%= user.last_sign_in_at %></p>
-            <%= link_to "Delete user", admin_user_path(user), method: :delete %>
-          </li>
-        </div>
+      <% if @users.empty? %>
+        <p>There are no users right now</p>
+      <% else %>
+        <% @users.each do |user| %>
+          <div class="user-details">
+            <li>
+              <p>Username: <%= user.username %></p>
+              <p>Email: <%= user.email %></p>
+              <p>Role: <%= user.role %></p>
+              <p>Created at: <%= user.created_at %></p>
+              <p>Sign in count: <%= user.sign_in_count %></p>
+              <p>Last sign in: <%= user.last_sign_in_at %></p>
+              <%= link_to "Delete user", admin_user_path(user), method: :delete %>
+            </li>
+          </div>
+        <% end %>
+        <%= paginate @users %>
       <% end %>
     </ol>
   </div>

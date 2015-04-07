@@ -3,7 +3,7 @@ module Admin
     before_action :authorize_user
 
     def index
-      @users = User.all.order(:created_at)
+      @users = User.all.order("created_at desc").page params[:page]
     end
 
     def destroy

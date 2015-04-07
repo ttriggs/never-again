@@ -2,11 +2,16 @@ class RestaurantsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @restaurants = Restaurant.order('created_at desc').limit(30)
+    if params[:search]
+      @restaurants = Restaurant.search(params[:search]).order('created_at desc').page params[:page]
+    else
+      @restaurants = Restaurant.order('created_at desc').page params[:page]
+    end
   end
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @reviews = @restaurant.reviews.order('created_at desc').page params[:page]
     @review = Review.new
   end
 

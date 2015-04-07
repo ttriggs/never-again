@@ -14,7 +14,7 @@ feature 'review voting' do
       visit restaurant_path(review.restaurant)
 
       within '.review-votes' do
-        find('#upvote').click
+        find('#upvote-button').click
       end
 
       within '.review-votes .total-votes' do
@@ -27,7 +27,7 @@ feature 'review voting' do
       visit restaurant_path(review.restaurant)
 
       within '.review-votes' do
-        find('#downvote').click
+        find('#downvote-button').click
       end
 
       within '.review-votes .total-votes' do
@@ -40,23 +40,23 @@ feature 'review voting' do
       visit restaurant_path(review.restaurant)
 
       within '.review-votes' do
-        find('#downvote').click
-        find('#downvote').click
+        find('#downvote-button').click
+        find('#downvote-button').click
       end
 
       within '.review-votes .total-votes' do
         expect(page).to have_content '-1 votes'
       end
-      expect(page).to have_content('You have already downvoted.')
+      expect(page).to have_content("Sorry, you're only allowed one Downvote per review.")
     end
 
     scenario 'change up vote to downvote' do
       visit restaurant_path(review.restaurant)
 
       within '.review-votes' do
-        find('#upvote').click
-        find('#downvote').click
-        find('#downvote').click
+        find('#upvote-button').click
+        find('#downvote-button').click
+        find('#downvote-button').click
       end
 
       within '.review-votes .total-votes' do
@@ -69,29 +69,14 @@ feature 'review voting' do
       visit restaurant_path(review.restaurant)
 
       within '.review-votes' do
-        find('#upvote').click
-        find('#downvote').click
+        find('#upvote-button').click
+        find('#downvote-button').click
       end
       within '.review-votes .total-votes' do
         expect(page).to have_content '0 votes'
       end
 
       expect(page).to have_content('Downvote saved.')
-    end
-  end
-
-  context 'as a guest' do
-    scenario 'I do not see an upvote or downvote arrows' do
-      visit restaurant_path(review.restaurant)
-
-      expect(page).to_not have_selector('#upvote')
-      expect(page).to_not have_selector('#downvote')
-    end
-
-    scenario 'I can see total votes a review has' do
-      visit restaurant_path(review.restaurant)
-
-      expect(page).to have_selector('.total-votes')
     end
   end
 end
