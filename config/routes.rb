@@ -6,8 +6,7 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show]
   resources :reviews, only: [:destroy] do
-    resources :upvotes, only: :create
-    resources :downvotes, only: :create
+    resources :votes, only: :create
   end
 
   namespace :admin do

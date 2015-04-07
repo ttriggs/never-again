@@ -16,12 +16,14 @@ class Review < ActiveRecord::Base
     votes.sum(:score)
   end
 
-  def increment_vote(user)
-    fetch_vote(user).increment
-  end
-
-  def decrement_vote(user)
-    fetch_vote(user).decrement
+  def update_vote(user, type)
+    if type == "Upvote"
+      fetch_vote(user).increment
+    elsif type == "Downvote"
+      fetch_vote(user).decrement
+    else
+      false
+    end
   end
 
   private

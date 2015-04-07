@@ -5,7 +5,7 @@ class Vote < ActiveRecord::Base
   belongs_to :review
 
   validates :user, presence: true
-  validates :user, uniqueness: { scope: [:id, :review_id] }
+  validates :user, uniqueness: { scope: :review }
 
   after_update :update_vote_cache
 
