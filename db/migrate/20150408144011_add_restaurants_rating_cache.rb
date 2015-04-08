@@ -1,5 +1,5 @@
 class AddRestaurantsRatingCache < ActiveRecord::Migration
   def change
-    add_column :restaurants, :rating_cache, :float, default: 0
+    add_column :restaurants, :rating_cache, :float
   end
 end

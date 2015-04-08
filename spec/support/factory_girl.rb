@@ -15,6 +15,7 @@ FactoryGirl.define do
 
     user
     cuisine
+    rating_cache nil
   end
 
   factory :review do

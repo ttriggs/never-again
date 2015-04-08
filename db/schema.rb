@@ -23,15 +23,15 @@ ActiveRecord::Schema.define(version: 20150408144011) do
   add_index "cuisines", ["name"], name: "index_cuisines_on_name", unique: true, using: :btree
 
   create_table "restaurants", force: :cascade do |t|
-    t.string   "name",                       null: false
-    t.string   "address",                    null: false
-    t.string   "city",                       null: false
+    t.string   "name",         null: false
+    t.string   "address",      null: false
+    t.string   "city",         null: false
     t.string   "description"
-    t.integer  "cuisine_id",                 null: false
-    t.integer  "user_id",                    null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.float    "rating_cache", default: 0.0
+    t.integer  "cuisine_id",   null: false
+    t.integer  "user_id",      null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.float    "rating_cache"
   end
 
   create_table "reviews", force: :cascade do |t|

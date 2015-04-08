@@ -25,19 +25,6 @@ class Restaurant < ActiveRecord::Base
     self.save!
   end
 
-  def get_rating
-    if rating_cache == 0.0
-      if reviews.none?
-        "No Rating yet. Be the first!"
-      else
-        update_rating_cache
-        rating_cache
-      end
-    else
-      rating_cache
-    end
-  end
-
 #validate name & address for scope
   def owner?(current_user)
     user == current_user
