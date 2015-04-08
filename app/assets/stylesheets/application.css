@@ -15,3 +15,23 @@
  *= require foundation_and_overrides
 
  */
+.restaurant-show-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.rating h3 {
+  margin-top: 0;
+}
+#restaurant-actions {
+  text-align: center;
+  margin-top: 15px;
+}
+#restaurant-actions div {
+  display: inline;
+  margin-left: 35px;
+  font-size: 14px;
+  margin-bottom: 35px;
+}
+#rage-button {
+  width: 300px;
+}
