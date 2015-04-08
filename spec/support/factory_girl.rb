@@ -8,13 +8,14 @@ FactoryGirl.define do
   end
 
   factory :restaurant do
-    name "Captain D's"
+    sequence(:name) { |u| "Captain D's #{u}" }
     address "34 columbus avenue"
     city "Boston"
     description "hole in the wall fast sea food"
 
     user
     cuisine
+    rating_cache nil
   end
 
   factory :review do
@@ -34,5 +35,4 @@ FactoryGirl.define do
   factory :cuisine do
     sequence(:name) { |n| "sea-food#{n}" }
   end
-
 end

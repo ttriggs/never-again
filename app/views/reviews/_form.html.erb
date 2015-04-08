@@ -22,6 +22,14 @@
     <%= f.text_area :body, placeholder: "optional..." %><br>
   </div>
 
+  <%= f.hidden_field :rage_level, value: "a little ticked" %>
+
+  <div class="field">
+    <button class="button alert round" id="rage-button" type="button">
+      How pissed are you? click here!
+    </button>
+  </div>
+
   <div class="actions">
     <%= f.submit class: "small radius button" %>
   </div>

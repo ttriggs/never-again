@@ -34,20 +34,35 @@ feature 'view restaurants' do
       expect(page).to have_link(next_page_restaurant.name)
     end
 
-    scenario 'I can view a restaurants details' do
+    scenario 'I can view restaurant details that has a rating ' do
       restaurant = FactoryGirl.create(:restaurant)
-
+      FactoryGirl.create(:review, restaurant: restaurant, rating: 1)
       visit restaurants_path
       expect(page).to have_link(restaurant.name)
       click_on restaurant.name
 
       expect(page).to have_content(restaurant.name)
       expect(page).to have_content(restaurant.description)
-      expect(page).to have_content(restaurant.address)
-      expect(page).to have_content(restaurant.city)
       expect(page).to have_content(restaurant.cuisine.name)
+      expect(page).to have_content(restaurant.rating_cache)
       expect(page).to have_content('Rating')
       expect(page).to have_content('Reviews')
+    end
+
+    scenario 'Restaurant ratins update when I add a new rating' do
+      restaurant = FactoryGirl.create(:restaurant)
+      FactoryGirl.create(:review, restaurant: restaurant, rating: 1)
+      visit restaurant_path(restaurant)
+      expect(page).to have_content('Rating: 1')
+      FactoryGirl.create(:review, restaurant: restaurant, rating: 3)
+      visit restaurant_path(restaurant)
+      expect(page).to have_content('Rating: 2')
+    end
+
+    scenario 'I am asked to add a review if a restaurant has no rating ' do
+      restaurant = FactoryGirl.create(:restaurant)
+      visit restaurant_path(restaurant)
+      expect(page).to have_content('No Rating yet. Be the first!')
     end
   end
 end

@@ -146,4 +146,24 @@ body #wrap #page-right-shadow{right:0px;top:0px;position:absolute;background-pos
 
 .parallax__layer--deep {
   transform: translateZ(-2px) scale(3);
+
+.restaurant-show-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.rating h3 {
+  margin-top: 0;
+}
+#restaurant-actions {
+  text-align: center;
+  margin-top: 15px;
+}
+#restaurant-actions div {
+  display: inline;
+  margin-left: 35px;
+  font-size: 14px;
+  margin-bottom: 35px;
+}
+#rage-button {
+  width: 300px;
 }

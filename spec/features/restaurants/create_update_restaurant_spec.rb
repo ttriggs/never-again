@@ -44,8 +44,6 @@ feature 'creating and updating restaurants' do
 
       # should be on the show page for edited restaurant
       expect(page).to have_content('Restaurant saved successfully!')
-      expect(page).to have_content('edited name')
-      expect(page).to have_content('edited address')
     end
 
     scenario 'I can delete a restaurant I created' do
