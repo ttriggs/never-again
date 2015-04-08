@@ -16,6 +16,10 @@ class Restaurant < ActiveRecord::Base
   validates :city, presence: true,
                       length: { minimum: 3, maximum: 40 }
 
+  def average_rating
+    reviews.average(:rating).to_f.round(1)
+  end
+
 #validate name & address for scope
   def owner?(current_user)
     user == current_user

@@ -12,6 +12,13 @@ class Review < ActiveRecord::Base
   validates :rating, presence: true,
              inclusion: { in: RATINGS }
 
+  after_update :update_rating_cache
+
+  def update_rating_cache
+    restaurant.rating_cache = restaurant.average_rating
+    restaurant.save!
+  end
+
   def total_votes
     votes.sum(:score)
   end
