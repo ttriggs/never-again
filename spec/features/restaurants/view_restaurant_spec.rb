@@ -43,8 +43,6 @@ feature 'view restaurants' do
 
       expect(page).to have_content(restaurant.name)
       expect(page).to have_content(restaurant.description)
-      expect(page).to have_content(restaurant.address)
-      expect(page).to have_content(restaurant.city)
       expect(page).to have_content(restaurant.cuisine.name)
       expect(page).to have_content(restaurant.rating_cache)
       expect(page).to have_content('Rating')

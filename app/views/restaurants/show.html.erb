@@ -54,6 +54,16 @@
 </div>
 
 <div>Reviews</div>
+<% if user_signed_in? %>
+  <div>
+    <%= render '/reviews/form' %>
+  </div>
+<% else %>
+  <div>
+    <%= link_to 'Sign in to add a review', new_user_session_path %>
+  </div>
+<% end %>
+
 <div>
   <% if @reviews.empty? %>
     <div> No Reviews yet for this restaurant </div>
