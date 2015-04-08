@@ -32,7 +32,7 @@ feature "user registers", %{
 
       visit user_path
 
-      page.find('#profile-avatar')['src'].should have_content 'thumb_default_photo.jpg'
+      page.find('#profile-photo')['src'].should have_content 'thumb_default_photo.jpg'
     end
 
 

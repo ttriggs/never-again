@@ -9,8 +9,8 @@ feature "Delete a restaurant", %q( As an admin I want to be able to delete
 
     sign_in_as(admin)
     visit restaurant_path(restaurant)
-    click_on("Delete restaurant")
+    click_on("Delete Restaurant")
 
-    expect(page).to have_link("Restaurant has been deleted")
+    expect(page).to have_content("Restaurant has been deleted")
   end
 end
