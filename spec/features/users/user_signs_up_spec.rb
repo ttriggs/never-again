@@ -12,12 +12,32 @@ feature "user registers", %{
     fill_in "Email", with: "john@example.com"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
+    # fill_in "Profile photo", with: "/app/assets/imgages/default_images/default_photo.jpg"
+    attach_file("Profile photo", Rails.root.join("app/assets/images/default_images/thumb_default_photo.jpg"))
 
     click_button "Sign up"
 
     expect(page).to have_content("Welcome! You have signed up successfully.")
     expect(page).to have_content("Sign Out")
   end
+
+    scenario "provide default profile image" do
+      visit new_user_registration_path
+
+      user = FactoryGirl.create(:user, profile_photo: nil )
+
+      visit new_user_session_path
+
+      sign_in_as(user)
+
+      visit user_path(user)
+      save_and_open_page
+
+      within "#profile-photo" do
+	      expect(page).to have_css("img")
+      end
+    end
+
 
   scenario "provide invalid registration information" do
     visit new_user_registration_path
