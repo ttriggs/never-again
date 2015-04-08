@@ -7,10 +7,10 @@ class ProfilePhotoUploader < CarrierWave::Uploader::Base
   end
 
   include CarrierWave::MiniMagick
-  process resize_to_fit: [800, 800]
+  process resize_to_fit: [200, 200]
 
   version :thumb do
-    process resize_to_fill: [50, 50]
+    process resize_to_fill: [80, 80]
   end
 
   def default_url
