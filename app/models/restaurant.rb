@@ -20,6 +20,24 @@ class Restaurant < ActiveRecord::Base
     reviews.average(:rating).to_f.round(1)
   end
 
+  def update_rating_cache
+    self.rating_cache = average_rating
+    self.save!
+  end
+
+  def get_rating
+    if rating_cache == 0.0
+      if reviews.none?
+        "No Rating yet. Be the first!"
+      else
+        update_rating_cache
+        rating_cache
+      end
+    else
+      rating_cache
+    end
+  end
+
 #validate name & address for scope
   def owner?(current_user)
     user == current_user
