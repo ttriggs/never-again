@@ -10,8 +10,7 @@ feature "user updates user information", %{
 
     sign_in_as(user)
 
-    click_link "My Account"
-    click_link "Edit my Account"
+    visit edit_user_registration_path
 
     fill_in "Username", with: "janedoe"
     fill_in "Email", with: "pops@aol.com"
@@ -20,6 +19,8 @@ feature "user updates user information", %{
     click_button "Update my Account"
 
     expect(page).to have_content("Your account has been updated successfully.")
+
+    visit user_path(user)
     expect(page).to have_content("janedoe")
     expect(page).to have_content("pops@aol.com")
   end

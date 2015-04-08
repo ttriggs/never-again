@@ -71,6 +71,9 @@
     <% @reviews.each do |review| %>
       <div>
         <div>
+
+          <div><%= image_tag review.user.profile_photo.thumb.to_s %></div>
+
           <div>Rating(1-5):
             <div><%= review.rating %></div>
           </div>
@@ -113,3 +116,6 @@
 <div>
   <%= link_to 'Back to all restaurants', restaurants_path %>
 </div>
+
+
+
