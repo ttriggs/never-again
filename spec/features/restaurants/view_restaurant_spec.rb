@@ -36,7 +36,7 @@ feature 'view restaurants' do
 
     scenario 'I can view restaurant details that has a rating ' do
       restaurant = FactoryGirl.create(:restaurant)
-      review = FactoryGirl.create(:review, restaurant: restaurant, rating: 1)
+      FactoryGirl.create(:review, restaurant: restaurant, rating: 1)
       visit restaurants_path
       expect(page).to have_link(restaurant.name)
       click_on restaurant.name

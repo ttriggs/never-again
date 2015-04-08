@@ -34,5 +34,4 @@ FactoryGirl.define do
   factory :cuisine do
     sequence(:name) { |n| "sea-food#{n}" }
   end
-
 end
