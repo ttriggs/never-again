@@ -10,11 +10,11 @@ class ProfilePhotoUploader < CarrierWave::Uploader::Base
   process resize_to_fit: [800, 800]
 
   version :thumb do
-    process resize_to_fill: [15, 15]
+    process resize_to_fill: [50, 50]
   end
 
   def default_url
-    "/assets/default_images/" + [version_name, "default_photo.jpg"].compact.join('_')
+    "default_images/" + [version_name, "default_photo.jpg"].compact.join('_')
   end
 
   def extension_white_list
