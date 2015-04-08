@@ -10,12 +10,12 @@
   frameborder="0" style="border:0"
   src= "https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_MAPS_API_KEY"] %>
   &q=<%= @google_query %>">
-</iframe>
-
+  </iframe>
 </div>
+
 <div>
-  <div>Rating:</div>
-  <div><%# @restaurant.rating %></div>
+  <% rating = @restaurant.rating_cache || "No Rating yet. Be the first!" %>
+  <div>Rating: <%= rating %></div>
 </div>
 <div>
   <div>City:</div>
@@ -24,9 +24,9 @@
 <div>
   <div>Type of Cuisine:</div>
   <% if @restaurant.cuisine.present? %>
-    <div><%= @restaurant.cuisine.name %></div>
+  <div><%= @restaurant.cuisine.name %></div>
   <% else %>
-    <div>Uncategorized></div>
+  <div>Uncategorized></div>
   <% end %>
 </div>
 <div>
@@ -35,18 +35,18 @@
 </div>
 
 <% if @restaurant.owner?(current_user) %>
-  <div>
-    <%= link_to 'Edit Restaurant', edit_restaurant_path(@restaurant) %>
-  </div>
+<div>
+  <%= link_to 'Edit Restaurant', edit_restaurant_path(@restaurant) %>
+</div>
 <% end %>
 <% if current_user != nil && current_user.admin? %>
-  <div>
-    <%= link_to 'Delete Restaurant', admin_restaurant_path(@restaurant), method: :delete %>
-  </div>
+<div>
+  <%= link_to 'Delete Restaurant', admin_restaurant_path(@restaurant), method: :delete %>
+</div>
 <% elsif @restaurant.owner?(current_user) %>
-  <div>
-    <%= link_to 'Delete Restaurant', restaurant_path(@restaurant), method: :delete %>
-  </div>
+<div>
+  <%= link_to 'Delete Restaurant', restaurant_path(@restaurant), method: :delete %>
+</div>
 <% end %>
 
 <div>
@@ -61,20 +61,39 @@
 <div>Reviews</div>
 
 <% if user_signed_in? %>
-  <div>
-    <%= render '/reviews/form' %>
-  </div>
+<div>
+  <%= render '/reviews/form' %>
+</div>
 <% else %>
-  <div>
-    <%= link_to 'Sign in to add a review', new_user_session_path %>
-  </div>
+<div>
+  <%= link_to 'Sign in to add a review', new_user_session_path %>
+</div>
 <% end %>
 
 <div>
   <% if @reviews.empty? %>
-    <div> No Reviews yet for this restaurant </div>
+  <div> No Reviews yet for this restaurant </div>
   <% else %>
-    <% @reviews.each do |review| %>
+  <% @reviews.each do |review| %>
+  <div>
+    <div>
+      <div>Rating(1-5): <%= review.rating %></div>
+      <div>Review:
+        <div><%= review.body %></div>
+      </div>
+      <div>Submitted On:
+        <div><%= review.created_at %></div>
+      </div>
+      <div class="review-votes">
+        <%= link_to "Up vote", review_votes_path(review, type: "Upvote"), class: "tiny radius button alert", id: "upvote-button", method: :post %>
+        <div class="total-votes"><%= pluralize(review.total_votes, "vote") %></div>
+        <%= link_to "Down vote", review_votes_path(review, type: "Downvote"), class: "tiny radius button alert", id: "downvote-button", method: :post %>
+      </div>
+      <% if current_user != nil && current_user.admin? %>
+      <div>
+        <%= link_to "Delete review", admin_review_path(review), method: :delete %>
+      </div>
+      <% elsif current_user == review.user %>
       <div>
         <div>
 
@@ -110,8 +129,16 @@
           <% end %>
         </div>
       </div>
-    <% end %>
-    <%= paginate @reviews %>
+      <% end %>
+      <% if current_user == review.user %>
+      <div>
+        <%= link_to "Edit Review", edit_restaurant_review_path(review.restaurant, review) %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <%= paginate @reviews %>
   <% end %>
 </div>
 

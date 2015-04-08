@@ -57,11 +57,11 @@ group :development, :test do
 end
 
 gem 'devise'
-gem 'foundation-rails'
 gem 'carrierwave'
 gem 'fog'
 gem 'fog-aws'
 gem 'mini_magick'
+gem 'foundation-rails', "5.5.1.0"
 
 group :test do
   gem 'coveralls', require: false
