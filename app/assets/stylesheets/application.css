@@ -44,6 +44,7 @@ body>.row>.column {
 }
 #rage-button {
   width: 300px;
+  font-family: 'Roboto';
 }
 .restaurant-details h6 {
   font-size: 14px;
@@ -170,25 +171,63 @@ body>.row>.column {
 }
 .total-votes {
   padding-left: 1.75rem;
+  font-family: 'Roboto';
 }
 #new-restaurant-button {
   margin-top: 2rem;
 }
+#new-restaurant-button a {
+  font-family: 'Roboto';
+}
+.restaurants-list {
+  font-family: 'Josefin Sans';
+}
+#all-users-link {
+  font-family: 'Dosis';
+}
+#user-index-header {
+  text-align: center;
+  font-family: 'Raleway';
+  font-size: 2rem;
+}
+#restaurant-index-header {
+  text-align: center;
+  font-family: 'Raleway';
+  font-size: 2rem;
+}
 .user-details p {
+  font-family: 'Josefin Sans';
   margin-bottom: 0;
   font-size: .8rem;
 }
 .user-details a {
   margin-bottom: .5rem;
   font-size: .8rem;
+  font-family: 'Roboto';
 }
 .user-details li {
   margin-bottom: 1rem;
   font-size: .9rem;
+  font-family: 'Josefin Sans'
 }
 .account-info {
   font-size: .9rem;
 }
 .review-details {
   font-family: 'Josefin Sans';
+}
+.new_review {
+  font-family: 'Roboto';
+}
+.actions {
+  font-family: 'Roboto';
+}
+#upvote-button {
+  font-family: 'Roboto';
+}
+#downvote-button {
+  font-family: 'Roboto';
+}
+.pagination {
+  font-family: 'Dosis';
 }
