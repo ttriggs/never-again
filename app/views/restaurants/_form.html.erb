@@ -38,6 +38,12 @@
     <%= f.select :cuisine_id, cuisines_to_array %><br>
   </div>
 
+  <div class="field">Current Image: <%= @restaurant.image_url.to_s.split("/").last %></div>
+  <div class="field">
+    <%= f.label :image_url %>
+    <%= f.file_field :image_url, type: :file %>
+  </div>
+
   <div class="actions">
     <%= f.submit class: "small radius button", method: "post" %>
   </div>

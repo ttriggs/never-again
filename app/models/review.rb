@@ -1,5 +1,6 @@
 class Review < ActiveRecord::Base
   RATINGS = [1, 2, 3, 4, 5]
+  mount_uploader :image_url, AuxPhotoUploader
 
   belongs_to :user
   belongs_to :restaurant
@@ -11,6 +12,8 @@ class Review < ActiveRecord::Base
 
   validates :rating, presence: true,
              inclusion: { in: RATINGS }
+
+  validates_processing_of :image_url
 
   after_save :update_restaurant_rating_cache
 

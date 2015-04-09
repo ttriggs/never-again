@@ -1,3 +1,4 @@
+ <%= image_tag @restaurant.image_url.to_s, size: "400x400",  alt: @restaurant.name %>
 <div class="restaurant-show-header"><h1><%= @restaurant.name %></h1></div>
 
 <% rating = @restaurant.rating_cache || "No Rating yet. Be the first!" %>
@@ -69,10 +70,13 @@
     <div> No Reviews yet for this restaurant </div>
   <% else %>
     <% @reviews.each do |review| %>
+      <div class="review-image">
+        <%= image_tag review.image_url.to_s, size: "120x120" %>
+      </div>
       <div>
         <div>
 
-          <div><%= image_tag review.user.profile_photo.thumb.to_s %></div>
+          <div class="review-profile-image"><%= image_tag review.user.profile_photo.thumb.to_s %></div>
 
           <div>Rating(1-5):
             <div><%= review.rating %></div>

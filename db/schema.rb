@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408181625) do
+ActiveRecord::Schema.define(version: 20150409160354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,44 +23,46 @@ ActiveRecord::Schema.define(version: 20150408181625) do
   add_index "cuisines", ["name"], name: "index_cuisines_on_name", unique: true, using: :btree
 
   create_table "restaurants", force: :cascade do |t|
-    t.string   "name",         null: false
-    t.string   "address",      null: false
-    t.string   "city",         null: false
+    t.string   "name",                      null: false
+    t.string   "address",                   null: false
+    t.string   "city",                      null: false
     t.string   "description"
-    t.integer  "cuisine_id",   null: false
-    t.integer  "user_id",      null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "cuisine_id",                null: false
+    t.integer  "user_id",                   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.float    "rating_cache"
+    t.string   "image_url",    default: ""
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer  "user_id",                   null: false
-    t.integer  "restaurant_id",             null: false
+    t.integer  "user_id",                    null: false
+    t.integer  "restaurant_id",              null: false
     t.text     "body"
-    t.integer  "rating",                    null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "rating",                     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "vote_cache",    default: 0
     t.string   "rage_level"
+    t.string   "image_url",     default: ""
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",                                                                  null: false
-    t.string   "email",                  default: "",                                       null: false
-    t.string   "encrypted_password",     default: "",                                       null: false
+    t.string   "username",                                  null: false
+    t.string   "email",                  default: "",       null: false
+    t.string   "encrypted_password",     default: "",       null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,                                        null: false
+    t.integer  "sign_in_count",          default: 0,        null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "role",                   default: "member",                                 null: false
-    t.string   "profile_photo",          default: "/images/default_images/thumb_photo.jpg"
+    t.string   "role",                   default: "member", null: false
+    t.string   "profile_photo",          default: ""
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

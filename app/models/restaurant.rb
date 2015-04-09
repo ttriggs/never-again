@@ -1,6 +1,7 @@
 class Restaurant < ActiveRecord::Base
   belongs_to :user
   belongs_to :cuisine
+  mount_uploader :image_url, AuxPhotoUploader
 
   has_many :reviews, dependent: :destroy
 
@@ -15,6 +16,8 @@ class Restaurant < ActiveRecord::Base
 
   validates :city, presence: true,
                       length: { minimum: 3, maximum: 40 }
+
+  validates_processing_of :image_url
 
   def average_rating
     reviews.average(:rating).to_f.round(1)

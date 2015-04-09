@@ -58,6 +58,6 @@ class RestaurantsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :city,
-                                       :description, :cuisine_id)
+                                       :description, :cuisine_id, :image_url)
   end
 end

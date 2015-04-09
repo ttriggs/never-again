@@ -12,7 +12,7 @@ feature "user registers", %{
     fill_in "Email", with: "john@example.com"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
-    attach_file("Profile photo", Rails.root.join("app/assets/images/default_images/thumb_default_photo.jpg"))
+    attach_file("Profile photo", Rails.root.join("app/assets/images/default_images/profile_default.png"))
 
     click_button "Sign up"
 
