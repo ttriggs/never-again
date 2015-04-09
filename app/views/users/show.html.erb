@@ -1,12 +1,13 @@
+<div class="account-info">
+  <div>Account Info</div>
 
-<div>Account Info</div>
+  <div>Username: <%= @user.username %></div>
 
-<div>Username: <%= @user.username %></div>
+  <div>Email: <%= @user.email %></div>
 
-<div>Email: <%= @user.email %></div>
+  <div>Account Create On: <%= @user.created_at %></div>
 
-<div>Account Create On: <%= @user.created_at %></div>
+  <div><%= link_to "Edit my Account", edit_registration_path(@user) %></div>
 
-<div><%= link_to "Edit my Account", edit_registration_path(@user) %></div>
-
-<div><%= link_to "Back", restaurants_path %></div>
+  <div><%= link_to "Back", restaurants_path %></div>
+</div>

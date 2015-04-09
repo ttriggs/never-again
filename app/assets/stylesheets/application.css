@@ -15,16 +15,26 @@
  *= require foundation_and_overrides
 
  */
+
+body>.row>.column {
+   background-color: #F2F2F2;
+ }
 .restaurant-show-header {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
-.rating h3 {
+.restaurant-show-header h1 {
+  font-size: 2rem;
+  font-family: 'Raleway';
+}
+.restaurant-rating h3 {
   margin-top: 0;
 }
 #restaurant-actions {
   text-align: center;
-  margin-top: 15px;
+  margin-bottom: 15px;
+  font-family: 'Dosis';
 }
 #restaurant-actions div {
   display: inline;
@@ -34,4 +44,151 @@
 }
 #rage-button {
   width: 300px;
+}
+.restaurant-details h6 {
+  font-size: 14px;
+}
+.restaurant-details p {
+  font-size: 14px;
+  margin-bottom: .25rem;
+}
+.restaurant-details {
+  background-color: #F2F0F0;
+  font-size: 14px;
+  font-family: 'Josefin Sans';
+}
+#new-review-on-show h3 {
+  font-size: 14px;
+  margin: 0;
+  font-family: 'Josefin Sans';
+}
+#new-review-on-show select {
+  font-size: 12px;
+  width: 40px;
+}
+#new-review-on-show #rage-button {
+  font-size: .8rem;
+  width: 12rem;
+  float: left;
+  margin-right: 7.5rem;
+}
+#new-review-on-show #review_body {
+  margin-bottom: 0;
+}
+#new-review-on-show .button {
+  height: 3.75rem;
+}
+
+/* stars */
+
+.rating {
+    float: left;
+    margin: 0.5rem;
+    margin-left: 0rem;
+    padding: 0;
+}
+.rating legend {
+  font-weight: normal;
+  font-size: .8rem;
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:before {
+    content: "💣 ";
+    font-size: 25px;
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    text-shadow: 1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > label:active {
+    position:relative;
+    top:2px;
+    left:2px;
+}
+
+/* stars end */
+.reviews h3 {
+  text-align: center;
+  font-family: "Raleway";
+}
+.reviews {
+  font-size: 13px;
+}
+
+.review-actions {
+  border-bottom: solid #999999 2px;
+  margin-bottom: 12px;
+  font-family: 'Dosis';
+}
+.back-to-restaurants {
+  text-align: right;
+  margin-right: 70px;
+}
+.review-votes .alert {
+  display: block;
+  width: 6rem;
+  margin-bottom: .25rem;
+}
+.total-votes {
+  padding-left: 1.75rem;
+}
+#new-restaurant-button {
+  margin-top: 2rem;
+}
+.user-details p {
+  margin-bottom: 0;
+  font-size: .8rem;
+}
+.user-details a {
+  margin-bottom: .5rem;
+  font-size: .8rem;
+}
+.user-details li {
+  margin-bottom: 1rem;
+  font-size: .9rem;
+}
+.account-info {
+  font-size: .9rem;
+}
+.review-details {
+  font-family: 'Josefin Sans';
 }

@@ -37,6 +37,7 @@ $("#rage-button").click(function(){
     b = b - 5;
     var rgb = "rgb(" + r + ", " + g + ", " + b + ")";
     $("body").css("background-color", rgb);
+    $(".column").css("background-color", rgb);
     $("#rage-button").text(rageLevel());
     $("#review_rage_level").val(rageLevel);
 });
