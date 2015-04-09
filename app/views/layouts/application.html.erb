@@ -7,19 +7,11 @@
 </head>
 <body>
 
-<!-- <div class="parallax">
-  <div class="parallax__layer parallax__layer--back"></div>
-    <div class="parallax__layer parallax__layer--base">
-  </div>
-</div>
- -->
-
   <nav class="top-bar sticky" data-topbar role="navigation">
     <ul class="title-area">
       <li class="name">
         <div id="my-h1"><a href="/">Never Again...</a></div id="my-h1">
       </li>
-       <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
       <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     </ul>
 
@@ -62,6 +54,17 @@
 
 
   <%= javascript_include_tag 'application' %>
-  <%= yield :extra_footer %>
+  <%# yield :extra_footer %>
+
+  <footer>
+<!--     <p class="copy"> &copy; 2015  <br>
+     A Launch Academy Production
+    </p> -->
+    <p class="credits"> Developed by:
+      <a href="https://github.com/ttriggs">Tyler Triggs,</a>
+      <a href="https://github.com/Mafooch">Josh Maffuccio,</a>
+      <a href="https://github.com/FBraman">Frank Braman,</a>
+    </p>
+  </footer>
 </body>
 </html>
