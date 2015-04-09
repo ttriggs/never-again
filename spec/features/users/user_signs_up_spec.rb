@@ -23,7 +23,7 @@ feature "user registers", %{
   scenario "provide default profile image" do
     visit new_user_registration_path
 
-    user = FactoryGirl.create(:user, profile_photo: nil)
+    user = FactoryGirl.create(:user)
 
     visit new_user_session_path
 
