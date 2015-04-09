@@ -63,6 +63,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'foundation-rails', "5.5.1.0"
 
+gem 'rails_12factor', group: :production
+
 group :test do
   gem 'coveralls', require: false
 end
