@@ -12,6 +12,7 @@ FactoryGirl.define do
     address "34 columbus avenue"
     city "Boston"
     description "hole in the wall fast sea food"
+    image_url "/app/assets/images/default_images/profile_default.png"
 
     user
     cuisine

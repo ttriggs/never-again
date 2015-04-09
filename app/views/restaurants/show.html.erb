@@ -1,4 +1,4 @@
- <%= image_tag @restaurant.image_url.to_s, size: "400x400",  alt: @restaurant.name %>
+<div id="image-url"><%= image_tag @restaurant.image_url.to_s, size: "400x400",  alt: @restaurant.name %></div>
 <div class="restaurant-show-header"><h1><%= @restaurant.name %></h1></div>
 
 <% rating = @restaurant.rating_cache || "No Rating yet. Be the first!" %>
@@ -120,6 +120,3 @@
 <div>
   <%= link_to 'Back to all restaurants', restaurants_path %>
 </div>
-
-
-
