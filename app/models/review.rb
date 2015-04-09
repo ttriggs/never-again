@@ -1,10 +1,11 @@
 class Review < ActiveRecord::Base
   RATINGS = [1, 2, 3, 4, 5]
-  mount_uploader :image_url, AuxPhotoUploader
 
   belongs_to :user
   belongs_to :restaurant
   has_many :votes, dependent: :destroy
+
+  mount_uploader :image_url, AuxPhotoUploader
 
   validates :restaurant, presence: true
 
