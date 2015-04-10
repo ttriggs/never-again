@@ -6,17 +6,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-  <nav class="top-bar sticky" data-topbar role="navigation">
+  <nav class="top-bar" data-topbar>
     <ul class="title-area">
-<!--       <li class="name">
-        <div id="my-h1"><a href="/">Never Again...</a></div id="my-h1">
-      </li> -->
-      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+      <li class="toggle-topbar menu-icon"><a href="#"></a></li>
     </ul>
 
-    <section class="top-bar-section fixed">
-      <!-- Left Nav Section -->
+    <section class="top-bar-section">
       <ul class="left">
         <li class="has-form search-bar ">
           <div class="row">
@@ -32,7 +27,9 @@
           </div>
         </li>
       </ul>
-      <!-- Right Nav Section -->
+
+
+
       <ul class="right">
         <%- if current_user -%>
           <li><%= link_to 'My Account', user_path(current_user) %></li>
@@ -45,26 +42,41 @@
     </section>
   </nav>
 
-    <%- flash.each do |key, value| -%>
-      <div class="flash flash-<%= key %>">
-        <%= value %>
-      </div>
-    <%- end -%>
+  <%- flash.each do |key, value| -%>
+    <div class="flash flash-<%= key %>">
+      <%= value %>
+    </div>
+  <%- end -%>
+
+
   <%= yield %>
 
 
   <%= javascript_include_tag 'application' %>
   <%# yield :extra_footer %>
 
-  <footer>
-<!--     <p class="copy"> &copy; 2015  <br>
-     A Launch Academy Production
-    </p> -->
-    <p class="credits"> Developed by:
-      <a href="https://github.com/ttriggs">Tyler Triggs,</a>
-      <a href="https://github.com/Mafooch">Josh Maffuccio,</a>
-      <a href="https://github.com/FBraman">Frank Braman,</a>
-    </p>
+  <footer class="row">
+  <div class="large-12 columns"><hr/>
+    <div class="row">
+
+      <div class="large-6 columns">
+        <ul class="inline-list">
+          <li class="left">A Launch Academy Production.</li>
+          <li>© Copyright Go Team, 2015:</li>
+        </ul>
+      </div>
+
+      <div class="large-6 columns">
+          <ul class="inline-list left">
+            <li><a href="https://github.com/ttriggs">Tyler Triggs,</a></li>
+            <li><a href="https://github.com/Mafooch">Josh Maffuccio,</a></li>
+            <li><a href="https://github.com/FBraman">Frank Braman</a></li>
+          </ul>
+      </div>
+
+    </div>
+  </div>
   </footer>
+
 </body>
 </html>

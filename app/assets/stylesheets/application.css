@@ -19,13 +19,13 @@
 
 .top-bar {
   height: 4.3em;
-  background: -moz-linear-gradient(top,  rgba(0,0,0,0.81) 0%, rgba(0,0,0,0.81) 12%, rgba(0,0,0,0.6) 51%, rgba(0,0,0,0) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.81)), color-stop(12%,rgba(0,0,0,0.81)), color-stop(51%,rgba(0,0,0,0.6)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  rgba(0,0,0,0.81) 0%,rgba(0,0,0,0.81) 12%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  rgba(0,0,0,0.81) 0%,rgba(0,0,0,0.81) 12%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  rgba(0,0,0,0.81) 0%,rgba(0,0,0,0.81) 12%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  rgba(0,0,0,0.81) 0%,rgba(0,0,0,0.81) 12%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c7000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0.81) 0%, rgba(0,0,0,0.81) 12%, rgba(0,0,0,0.6) 51%, rgba(0,0,0,0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.81)), color-stop(12%,rgba(0,0,0,0.81)), color-stop(51%,rgba(0,0,0,0.6)), color-stop(100%,rgba(0,0,0,0)));
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0.81) 0%,rgba(0,0,0,0.81) 12%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%);
+  background: -o-linear-gradient(top,  rgba(0,0,0,0.81) 0%,rgba(0,0,0,0.81) 12%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%);
+  background: -ms-linear-gradient(top,  rgba(0,0,0,0.81) 0%,rgba(0,0,0,0.81) 12%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%);
+  background: linear-gradient(to bottom,  rgba(0,0,0,0.81) 0%,rgba(0,0,0,0.81) 12%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c7000000', endColorstr='#00000000',GradientType=0 );
 }
 
 
@@ -58,58 +58,67 @@
   padding-right: 0;
 }
 
-.left {
-/*  margin-left:;
-*/}
+
 .top-bar-section .has-form  {
   padding-left: 0;
   margin-left: 0;
 }
 
-.top-bar .name #my-h1 {
-  font-weight: bold;
-  width: 75%;
-  display: block;
-  margin: 1em;
-  width: auto;
-}
-
-#my-h1 a {
-  color: #FFFFFF;
-  text-decoration: none;
-  line-height: inherit;
-}
 
 .splash-container {
-  height: 600px;
+  width: 1060px;
+  height:auto;
+  margin: auto;
   position: relative;
+  text-align: center;
   left: 0;
   top: 0;
-
 }
 
 .splash-container .splash {
-/*  background: url('city3.png') no-repeat;
+ /* background: url('city3.png') no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
-*/
-  height: 100%;
+  background-size: cover;*/
+/*  height: 100%;
   width: 100%;
   z-index: 0;
+*/}
+
+.text_over_image {
+    font-size: 4em;
+    line-height: 1.4;
+    color: #D80328;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left:0;
+    right:0;
+    bottom:0;
+    height: 7em;
+    font-weight: bold;
+}
+.tag_line_over_image {
+    font-size: 1.5em;
+    line-height: 0;
+    position: absolute;
+    margin: auto;
+    top: 32.12em;
+    left:0;
+    right:0;
+    bottom:0;
+    height: 7em;
+    font-weight: bold;
 }
 
-html {
-  background: url(images/bg.jpg) no-repeat center center fixed;
+
+a {
+  color: #D80328;
 }
 
-/*body #wrap #page-left-shadow{left:0px;top:0px;position:absolute;background-position:-14px 0;height:1px;width:8px;background-repeat:repeat-y;width:8px;height:100%}
-body #wrap #page-right-shadow{right:0px;top:0px;position:absolute;background-position:-24px 0;height:1px;width:8px;background-repeat:repeat-y;width:8px;height:100%}
-*/
-
-.my-h1 {
-
+a:hover {
+  color: #ad0220;
 }
 
 .top-bar-section ul li {
@@ -123,38 +132,6 @@ body #wrap #page-right-shadow{right:0px;top:0px;position:absolute;background-pos
   line-height: 2.8125rem;
   background-color: transparent;
 }
-
-/*
-.parallax {
-  perspective: 1px;
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-.parallax__layer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-.parallax__layer--base {
-  transform: translateZ(0);
-}
-
-.parallax__layer--back {
-  background-image: url('city.png');
-    background-repeat: no-repeat;
-
-  background-size: cover;
-  background-position: relative;
-  height: 700px;
-
-  transform: translateZ(-1px) scale(2);
-}
-
-.parallax__layer--deep {
-  transform: translateZ(-2px) scale(3);*/
 
 .restaurant-show-header {
   text-align: center;
