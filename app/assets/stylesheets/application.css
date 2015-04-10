@@ -306,6 +306,11 @@ body>.row>.column {
 .restaurants-list {
   font-family: 'Josefin Sans';
 }
+.restaurants-list ol {
+  font-family: 'Josefin Sans';
+  font-size: 2rem;
+  list-style-type: none;
+}
 #all-users-link {
   font-family: 'Dosis';
 }

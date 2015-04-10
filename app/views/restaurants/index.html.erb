@@ -1,11 +1,14 @@
 <h1 id="restaurant-index-header">All Restaurants</h1>
 
-<div id="new-restaurant-button">
-  <%= link_to 'New Restaurant', new_restaurant_path, class: "small button radius " %>
+
+<div class="row">
+  <div id="new-restaurant-button">
+    <%= link_to 'New Restaurant', new_restaurant_path, class: "small button radius " %>
+  </div>
 </div>
 
 <div class="row">
-  <div class="medium-10 columns restaurants-list">
+  <div class="row restaurants-list">
     <ol>
       <% @restaurants.each do |restaurant| %>
         <li>
@@ -15,11 +18,13 @@
     </ol>
   </div>
 </div>
-<%= paginate @restaurants %>
-<br>
 
-<div id="all-users-link">
-  <% if user_signed_in? && current_user.admin? %>
-    <%= link_to "View all users", admin_users_path %>
-  <% end %>
+<div class="row">
+  <div id="all-users-link">
+    <% if user_signed_in? && current_user.admin? %>
+      <%= link_to "View all users", admin_users_path %>
+    <% end %>
+  </div>
+
+  <%= paginate @restaurants %>
 </div>
