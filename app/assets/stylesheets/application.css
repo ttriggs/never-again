@@ -116,7 +116,7 @@ body>.row>.column {
 }
 
 .rating:not(:checked) > label:before {
-    content: "💣 ";
+    content: " 💣 ";
     font-size: 25px;
 }
 
