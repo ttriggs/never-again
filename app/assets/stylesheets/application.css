@@ -51,9 +51,20 @@
 }
 
 .search-bar {
-  margin: .5em;
+  margin: 0.5em;
 }
 
+#search-bar-field {
+  padding-right: 0;
+}
+
+.left {
+/*  margin-left:;
+*/}
+.top-bar-section .has-form  {
+  padding-left: 0;
+  margin-left: 0;
+}
 
 .top-bar .name #my-h1 {
   font-weight: bold;
@@ -78,11 +89,12 @@
 }
 
 .splash-container .splash {
-  background: url('city3.png') no-repeat;
+/*  background: url('city3.png') no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+*/
   height: 100%;
   width: 100%;
   z-index: 0;
