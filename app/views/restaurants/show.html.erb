@@ -1,4 +1,8 @@
-<div id="image-url"><%= image_tag @restaurant.image_url.to_s, size: "400x400",  alt: @restaurant.name %></div>
+<%= binding.pry %>
+<% image_url = @restaurant.image_url.to_s %>
+<% if image_url != "no image" %>
+  <div id="image-url"><%= image_tag image_url, size: "400x400",  alt: @restaurant.name %></div>
+<% end %>
 <div class="restaurant-show-header"><h1><%= @restaurant.name %></h1></div>
 
 <% rating = @restaurant.rating_cache || "No Rating yet. Be the first!" %>
