@@ -1,21 +1,54 @@
+    <div class="splash-container">
+      <div class="slick-carousel carousel-shadow">
+        <div><img src="<%= asset_path( 'city1.png' ) %>" class="radius-img" /></div>
+        <div><img src="<%= asset_path( 'city2.png' ) %>" class="radius-img" /></div>
+        <div><img src="<%= asset_path( 'city3.png' ) %>" class="radius-img" /></div>
+      </div>
 
-<div class="splash-container">
-<!--   <img src="<%# asset_path( 'city3.png' ) %>" /> -->
-  <div class="slick-carousel carousel-shadow">
-    <div><img src="<%= asset_path( 'city1.png' ) %>" id="radius-img" /></div>
-    <div><img src="<%= asset_path( 'city2.png' ) %>" id="radius-img" /></div>
-    <div><img src="<%= asset_path( 'city3.png' ) %>" id="radius-img" /></div>
-  </div>
-
-
-  <a href="/restaurants" class="text_over_image">NEVER AGAIN...</a>
-</div>
-  <div class="row large-12 columns">
+      <!-- <a href="/restaurants" id="headline">NEVER AGAIN...</a> -->
+    </div>
+<br>
+<br>
+<div class="row">
+  <div class="large-12 columns">
     <div class="tag_line">A Boston Restaurant Review Site For Your Worst Dining Experiences </div>
   </div>
+</div>
+<br>
 
 <div class="row">
-  <!-- MORE STUFF BELOW -->
+  <div class="centered-button">
+    <div id="new-restaurant-button">
+      <%= link_to 'Add a Restaurant!', new_restaurant_path, class: "large button radius alert" %>
+      <%= link_to 'View All Restaurants', restaurants_path, class: "large button radius" %>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="large-12 columns">
+    <div class="tag_line">The Worst of the Worst:</div>
+  </div>
+  <br>
+
+  <div class="restaurants-carousel">
+    <% @restaurants.each do |restaurant| %>
+      <% image_url = restaurant.image_url.to_s %>
+      <div class="radius-img" id="home-image-url">
+        <div id="carousel-restaurant-name">
+          <a href="restaurant_path(<%= restaurant %>)%>"><%= restaurant.name %></a>
+        </div>
+        <div id="carousel-restaurant-image">
+          <% if image_url != "no image" %>
+            <%= link_to image_tag(image_url,  alt: restaurant.name), restaurant_path(restaurant) %>
+          <% else %>
+            <img src="<%= asset_path( 'default_images/restaurant_default.png' ) %>" />
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 

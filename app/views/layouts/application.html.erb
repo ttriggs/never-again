@@ -9,36 +9,39 @@
 <body>
   <nav class="top-bar" data-topbar>
     <ul class="title-area">
+      <li class="name">
+        <div class="my-h1"><a href="/">Never Again...</a></div >
+      </li>
       <li class="toggle-topbar menu-icon"><a href="#"></a></li>
     </ul>
 
     <section class="top-bar-section">
       <ul class="left">
+      </ul>
+
+      <ul class="right">
         <li class="has-form search-bar ">
           <div class="row">
 
             <%= form_tag(restaurants_path, method: 'get') do %>
-              <div class="large-8 small-9 columns">
+              <div class="large-8 small-8 columns" id="centered-search-bar">
                 <%= text_field_tag :search,  params[:search], placeholder: "Search Boston's worst", id: "search-bar-field" %>
               </div>
               <div class="large-4 small-3 columns">
-                <%= submit_tag "Search", name: nil, class: "alert button" %>
+                <%= submit_tag "Search", name: nil, class: "alert button", id: "search-button" %>
               </div>
             <% end %>
           </div>
         </li>
-      </ul>
-
-
-
-      <ul class="right">
-        <%- if current_user -%>
-          <li><%= link_to 'My Account', user_path(current_user) %></li>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
+        <li class="right-buttons">
+          <%- if current_user -%>
+            <li><%= link_to 'My Account', user_path(current_user) %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <%- else -%>
+            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <%- end -%>
+        </li>
       </ul>
     </section>
   </nav>

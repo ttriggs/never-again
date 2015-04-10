@@ -28,3 +28,12 @@ $('.slick-carousel').slick({
   autoplaySpeed: 6000,
   autoplay: true
 });
+
+$('.restaurants-carousel').slick({
+  infinite: true,
+  autoplaySpeed: 3500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  // autoplay: true
+  // arrows: false,
+});
