@@ -61,7 +61,8 @@ gem 'fog'
 gem 'fog-aws'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'foundation-rails', "5.5.1.0"
+gem 'foundation-rails', '5.5.1.0'
+gem 'jquery-slick-rails'
 
 gem 'rails_12factor', group: :production
 

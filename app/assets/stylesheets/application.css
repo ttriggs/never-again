@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
+ *= require slick
 
  */
 
@@ -76,16 +77,14 @@
   top: 0;
 }
 
-.splash-container .splash {
- /* background: url('city3.png') no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;*/
-/*  height: 100%;
-  width: 100%;
-  z-index: 0;
-*/}
+#radius-img {
+  border-radius: 10px 10px 10px 10px;
+}
+
+.carousel-shadow {
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0px 0px 75px -4px rgba(0,0,0,0.8);
+}
 
 .text_over_image {
     font-size: 4em;
@@ -100,19 +99,20 @@
     height: 7em;
     font-weight: bold;
 }
-.tag_line_over_image {
+
+.tag_line {
     font-size: 1.5em;
     line-height: 0;
-    position: absolute;
+    /*position: absolute;*/
+    /*text-align: center;*/
     margin: auto;
-    top: 32.12em;
-    left:0;
-    right:0;
-    bottom:0;
-    height: 7em;
+    top: 0em;
+    left:0em;
+    right:0em;
+    bottom:0em;
+    height: 0em;
     font-weight: bold;
 }
-
 
 a {
   color: #D80328;

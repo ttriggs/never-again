@@ -14,5 +14,17 @@
 //= require jquery_ujs
 //= require foundation
 //= require_tree .
+//= require jquery.slick
 
 $(function(){ $(document).foundation(); });
+
+
+$('.slick-carousel').slick({
+  speed: 800,
+  fade: true,
+  arrows: false,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplaySpeed: 6000,
+  autoplay: true
+});
