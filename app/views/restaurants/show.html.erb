@@ -109,7 +109,7 @@
 
       <div class="row">
 
-        <div class="small-2 columns">
+        <div class="small-2 columns review-votes">
           <div class="total-votes"><%= pluralize(review.total_votes, "vote") %></div>
           <%= link_to "Up vote", review_votes_path(review, type: "Upvote"), class: "tiny radius button alert", id: "upvote-button", method: :post %>
           <%= link_to "Down vote", review_votes_path(review, type: "Downvote"), class: "tiny radius button alert", id: "downvote-button", method: :post %>

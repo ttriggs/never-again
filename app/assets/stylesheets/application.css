@@ -26,13 +26,6 @@ body {
 
 .top-bar {
   height: 3.4em;
-/*  background: -moz-linear-gradient(top,  rgba(0,0,0,0.81) 0%, rgba(0,0,0,0.81) 12%, rgba(0,0,0,0.6) 51%, rgba(0,0,0,0) 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.81)), color-stop(12%,rgba(0,0,0,0.81)), color-stop(51%,rgba(0,0,0,0.6)), color-stop(100%,rgba(0,0,0,0)));
-  background: -webkit-linear-gradient(top,  rgba(0,0,0,0.81) 0%,rgba(0,0,0,0.81) 12%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%);
-  background: -o-linear-gradient(top,  rgba(0,0,0,0.81) 0%,rgba(0,0,0,0.81) 12%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%);
-  background: -ms-linear-gradient(top,  rgba(0,0,0,0.81) 0%,rgba(0,0,0,0.81) 12%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%);
-  background: linear-gradient(to bottom,  rgba(0,0,0,0.81) 0%,rgba(0,0,0,0.81) 12%,rgba(0,0,0,0.6) 51%,rgba(0,0,0,0) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c7000000', endColorstr='#00000000',GradientType=0 );*/
 }
 
 
@@ -63,7 +56,7 @@ body {
 
 .search-bar {
   margin-top: 0.5em;
-  margin-right: 0em
+  margin-right: 0em;
   right: 0;
 }
 
@@ -148,44 +141,12 @@ body {
   margin-left: 1.2em;
 }
 
-/*
-a#headline {
-  font-size: 2em;
-  line-height: 0;
-  color: #D80328;
-  position: absolute;
-  margin: auto;
-  top: 0;
-  left:0;
-  right:0;
-  bottom:15.7em;
-  height: 7em;
-  font-weight: bold;
-  transition:  0.3s;
-  transition-timing-function: ease-in;
-}
-
-a#headline:hover {
-  font-size: 5em;
-  line-height: 1.4;
-  color: #D80328;
-  position: absolute;
-  margin: auto;
-  top: 0;
-  left:0;
-  right:0;
-  bottom:9.6em;
-  height: 0em;
-  transition:  3s;
-}*/
-
 #carousel-restaurant-name {
   font-weight: bold;
   text-align: center;
   font-size: 1.2em;
   text-decoration: underline;
 }
-
 
 .tag_line {
   font-family: Raleway, Helvetica, sans-serif;
@@ -450,7 +411,7 @@ body>.row>.column {
   font-family: 'Dosis';
 }
 #sign-in {
-  font-family: 'Roboto'
+  font-family: 'Roboto';
 }
 .show-restaurant-image img {
   display: block;

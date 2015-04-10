@@ -13,7 +13,7 @@ feature "Add a review for a restaurant", %q(
     sign_in_as(user)
 
     visit restaurant_path(restaurant)
-    select("2", from: "Rating")
+    choose("star2")
     fill_in("Review", with: "An affront to all five senses")
     click_on("Create Review")
 
@@ -28,7 +28,7 @@ feature "Add a review for a restaurant", %q(
     sign_in_as(reviewer)
 
     visit restaurant_path(restaurant)
-    select("2", from: "Rating")
+    choose("star2")
     fill_in("Review", with: "An affront to all five senses")
     click_on("Create Review")
 
@@ -52,7 +52,7 @@ feature "Add a review for a restaurant", %q(
     sign_in_as(reviewer)
 
     visit restaurant_path(restaurant)
-    select("2", from: "Rating")
+    choose("star2")
     fill_in("Review", with: "An affront to all five senses")
     attach_file("Image url", Rails.root.join("app/assets/images/default_images/profile_default.png"))
     click_on("Create Review")
