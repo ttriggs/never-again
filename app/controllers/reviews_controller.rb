@@ -5,6 +5,8 @@ class ReviewsController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
     @review = @restaurant.reviews.new(review_params)
     @review.user = current_user
+    @reviews = @restaurant.reviews.order('created_at desc').page params[:page]
+    @google_query = CGI::escape(@restaurant.address + ", Boston, MA")
     if @review.save
       ReviewNotifier.new_review(@review).deliver_later
       flash[:notice] = "Review saved successfully."

@@ -1,98 +1,145 @@
-<% image_url = @restaurant.image_url.to_s %>
-<% if image_url != "no image" %>
-  <div id="image-url"><%= image_tag image_url, size: "400x400",  alt: @restaurant.name %></div>
-<% else %>
-  <img src="<%= asset_path( 'default_images/restaurant_default.png' ) %>" />
-<% end %>
-<div class="row">
-  <div class="restaurant-show-header"><h1><%= @restaurant.name %></h1></div>
-</div>
-<% rating = @restaurant.rating_cache || "No Rating yet. Be the first!" %>
+<div class="row all-show-page">
 
-<div class="row">
-  <div class="small-6 columns">
-    <div class="restaurant-details">
-      <div class="restaurant-rating">
-        Rating: <%= rating %> bombs
-      </div>
-      <div class="cuisine">
-      <% if @restaurant.cuisine.present? %>
-        Type of Cuisine: <%= @restaurant.cuisine.name %>
-      <% else %>
-        <h6>Uncategorized></h6>
-      <% end %>
-      </div>
-      <div class="description">
-        <p>Description: <%= @restaurant.description %></p>
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="restaurant-show-header"><h1><%= @restaurant.name %></h1></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 columns">
+    <% rating = @restaurant.rating_cache || "No Rating yet. Be the first!" %>
+      <div class="restaurant-details">
+        <div class="restaurant-rating">
+          Rating: <%= rating %> bombs
+        </div>
+        <div class="cuisine">
+        <% if @restaurant.cuisine.present? %>
+          Type of Cuisine: <%= @restaurant.cuisine.name %>
+        <% else %>
+          <h6>Uncategorized></h6>
+        <% end %>
+        </div>
+        <div class="description">
+          <p>Description: <%= @restaurant.description %></p>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div id="new-review-on-show">
-      <% if user_signed_in? %>
+  <div class="row">
+    <div class="small-12 columns">
+      <div id="restaurant-actions">
+        <% if @restaurant.owner?(current_user) %>
+          <div>
+            <%= link_to 'Edit Restaurant', edit_restaurant_path(@restaurant) %>
+          </div>
+        <% end %>
+        <% if current_user != nil && current_user.admin? %>
+          <div>
+            <%= link_to 'Delete Restaurant', admin_restaurant_path(@restaurant), method: :delete %>
+          </div>
+        <% elsif @restaurant.owner?(current_user) %>
+          <div>
+            <%= link_to 'Delete Restaurant', restaurant_path(@restaurant), method: :delete %>
+          </div>
+        <% end %>
         <div>
-          <%= render '/reviews/form' %>
+          <%= link_to 'Add a Review for this Restaurant', new_restaurant_review_path(@restaurant) %>
+        </div>
+        <div>
+          <%= link_to 'Back to all restaurants', restaurants_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-6 columns">
+      <div class="show-restaurant-image">
+        <% image_url = @restaurant.image_url.to_s %>
+        <% if image_url != "no image" %>
+          <div id="image-url"><%= image_tag image_url, size: "400x400",  alt: @restaurant.name %></div>
+        <% else %>
+          <img src="<%= asset_path( 'default_images/restaurant_default.png' ) %>" />
+        <% end %>
+      </div>
+    </div>
+
+    <div class="small-6 columns">
+      <div class="restaurant-map">
+        <iframe
+        width="320"
+        height="282"
+        frameborder="0" style="border:0"
+        src= "https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_MAPS_API_KEY"] %>
+        &q=<%= @google_query %>">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row form">
+    <div class="small-6 small-centered columns">
+      <div id="new-review-on-show">
+        <% if user_signed_in? %>
+          <div>
+            <%= render '/reviews/form' %>
+          </div>
+        <% else %>
+          <div id="sign-in">
+            <%= link_to 'Sign in to add a review', new_user_session_path %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="small-12 columns">
+    <div class="reviews">
+      <% if @reviews.empty? %>
+        <div>
+          No Reviews yet for this restaurant
         </div>
       <% else %>
-        <div id="sign-in">
-          <%= link_to 'Sign in to add a review', new_user_session_path %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+        <h3>Reviews</h3>
+        <% @reviews.each do |review| %>
 
-  <div class="small-6 columns">
-    <iframe
-    width="400"
-    height="325"
-    frameborder="0" style="border:0"
-    src= "https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_MAPS_API_KEY"] %>
-    &q=<%= @google_query %>">
-    </iframe>
-  </div>
-</div>
+      <div class="row">
 
-<div class="small-12 columns">
-  <div id="restaurant-actions">
-    <% if @restaurant.owner?(current_user) %>
-      <div>
-        <%= link_to 'Edit Restaurant', edit_restaurant_path(@restaurant) %>
-      </div>
-    <% end %>
-    <% if current_user != nil && current_user.admin? %>
-      <div>
-        <%= link_to 'Delete Restaurant', admin_restaurant_path(@restaurant), method: :delete %>
-      </div>
-    <% elsif @restaurant.owner?(current_user) %>
-      <div>
-        <%= link_to 'Delete Restaurant', restaurant_path(@restaurant), method: :delete %>
-      </div>
-    <% end %>
-    <div>
-      <%= link_to 'Add a Review for this Restaurant', new_restaurant_review_path(@restaurant) %>
-    </div>
-    <div>
-      <%= link_to 'Back to all restaurants', restaurants_path %>
-    </div>
-  </div>
-</div>
-
-<div class="small-12 columns">
-  <div class="reviews">
-    <% if @reviews.empty? %>
-      <div>
-        No Reviews yet for this restaurant
-      </div>
-    <% else %>
-      <h3>Reviews</h3>
-      <% @reviews.each do |review| %>
-
-        <div class="row">
+        <div class="small-2 columns">
           <div class="total-votes"><%= pluralize(review.total_votes, "vote") %></div>
           <%= link_to "Up vote", review_votes_path(review, type: "Upvote"), class: "tiny radius button alert", id: "upvote-button", method: :post %>
           <%= link_to "Down vote", review_votes_path(review, type: "Downvote"), class: "tiny radius button alert", id: "downvote-button", method: :post %>
-          </div>
+        </div>
 
-        <div class= "row review-details">
+        <div class="small-1 columns review-actions">
+          <% if current_user != nil && current_user.admin? %>
+            <div>
+              <%= link_to "Delete review", admin_review_path(review), method: :delete %>
+            </div>
+          <% elsif current_user == review.user %>
+            <div>
+              <%= link_to "Delete review", review_path(review), method: :delete %>
+            </div>
+          <% end %>
+          <% if current_user == review.user %>
+            <div>
+              <%= link_to "Edit Review", edit_restaurant_review_path(review.restaurant, review) %>
+            </div>
+          <% end %>
+        </div>
+
+
+        <div class="small-2 columns">
+          <div class="review-profile-image">
+            <%= image_tag review.user.profile_photo.to_s %>
+          </div>
+        </div>
+
+        <div class="small-4 columns review-details">
           <div>
             <div>Rating(1-5):
               <%= review.rating %>
@@ -110,28 +157,22 @@
               <%= review.user.username %>
             </div>
           </div>
+        </div>
 
-          <div class="review-actions">
-            <% if current_user != nil && current_user.admin? %>
-              <div>
-                <%= link_to "Delete review", admin_review_path(review), method: :delete %>
-              </div>
-            <% elsif current_user == review.user %>
-              <div>
-                <%= link_to "Delete review", review_path(review), method: :delete %>
-              </div>
-            <% end %>
-            <% if current_user == review.user %>
-              <div>
-                <%= link_to "Edit Review", edit_restaurant_review_path(review.restaurant, review) %>
-              </div>
+        <div class="small-3 columns">
+          <div class="review-image">
+            <% unless review.image_url.to_s == "no image" %>
+              <%= image_tag review.image_url.to_s, size: "120x120" %>
             <% end %>
           </div>
-
         </div>
-      <% end %>
-    <% end %>
-  </div>
-</div>
 
-<%= paginate @reviews %>
+      </div>
+
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= paginate @reviews %>
+</div>

@@ -16,8 +16,13 @@
  *= require slick
 
  */
+body {
+  background-color: #FFFFFF;
+}
 
-
+.all-show-page {
+  background-color: #f2f2f2;
+}
 
 .top-bar {
   height: 3.4em;
@@ -262,7 +267,9 @@ body>.row>.column {
 .restaurant-details {
   background-color: #F2F0F0;
   font-size: 14px;
+  text-align: center;
   font-family: 'Josefin Sans';
+  margin-bottom: 1rem;
 }
 #new-review-on-show h3 {
   font-size: 14px;
@@ -362,8 +369,7 @@ body>.row>.column {
 }
 
 .review-actions {
-  border-bottom: solid #999999 2px;
-  margin-bottom: 12px;
+  margin-top: 1rem;
   font-family: 'Dosis';
 }
 .back-to-restaurants {
@@ -376,8 +382,8 @@ body>.row>.column {
   margin-bottom: .25rem;
 }
 .total-votes {
-  padding-left: 1.75rem;
   font-family: 'Roboto';
+  text-align: center;
 }
 #new-restaurant-button {
   margin-top: 2rem;
@@ -387,6 +393,11 @@ body>.row>.column {
 }
 .restaurants-list {
   font-family: 'Josefin Sans';
+}
+.restaurants-list ol {
+  font-family: 'Josefin Sans';
+  font-size: 2rem;
+  list-style-type: none;
 }
 #all-users-link {
   font-family: 'Dosis';
@@ -421,6 +432,8 @@ body>.row>.column {
 }
 .review-details {
   font-family: 'Josefin Sans';
+  padding-bottom: .5rem;
+  border-bottom: solid #999999 2px;
 }
 .new_review {
   font-family: 'Roboto';
@@ -428,15 +441,42 @@ body>.row>.column {
 .actions {
   font-family: 'Roboto';
 }
-#upvote-button {
+#upvote-button, #downvote-button {
   font-family: 'Roboto';
-}
-#downvote-button {
-  font-family: 'Roboto';
+  display: block;
+  margin-bottom: .5rem;
 }
 .pagination {
   font-family: 'Dosis';
 }
 #sign-in {
   font-family: 'Roboto'
+}
+.show-restaurant-image img {
+  display: block;
+  margin: auto;
+  width: 20rem;
+  height: 17.6rem;
+  box-shadow: 0px 0px 36px -5px rgba(0,0,0,0.75);
+}
+.restaurants-map iframe {
+  display: block;
+  margin: auto;
+  box-shadow: 0px 0px 36px -5px rgba(0,0,0,0.75);
+}
+.form>div {
+  margin-top: 2rem;
+  text-align: center
+}
+.reviews>.row {
+  margin-bottom: 2rem;
+}
+.review-profile-image>img {
+  height: 5.5rem;
+  width: 5rem;
+  margin-top: .6rem;
+}
+.review-image>img {
+  height: 6rem;
+  width: 11rem;
 }
