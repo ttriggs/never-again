@@ -32,6 +32,14 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+  <div class="field">Current Image: <%= resource.profile_photo.to_s.split("/").last %></div>
+
+  <div>
+    <%= f.label :profile_photo %>
+    <%= f.file_field :profile_photo, type: :file %>
+  </div>
+
+
   <div class="actions">
     <%= f.submit "Update my Account" %>
   </div>

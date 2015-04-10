@@ -38,13 +38,14 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = current_user.reviews.find(params[:id])
+    restaurant = @review.restaurant
     @review.destroy
-    redirect_to restaurants_path, notice: 'Review deleted.'
+    redirect_to restaurant_path(restaurant), notice: 'Review deleted.'
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:rating, :body, :rage_level)
+    params.require(:review).permit(:rating, :body, :rage_level, :image_url)
   end
 end

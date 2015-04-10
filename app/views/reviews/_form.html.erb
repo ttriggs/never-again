@@ -17,6 +17,12 @@
     <%= f.select :rating, Review::RATINGS %><br>
   </div>
 
+  <div class="field">Current Image: <%= @review.image_url.to_s.split("/").last %></div>
+  <div class="field">
+    <%= f.label :image_url %>
+    <%= f.file_field :image_url, type: :file %>
+  </div>
+
   <div class="field">
     <%= f.label :body, "Review" %>
     <%= f.text_area :body, placeholder: "optional..." %><br>

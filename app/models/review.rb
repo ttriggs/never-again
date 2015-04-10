@@ -5,12 +5,16 @@ class Review < ActiveRecord::Base
   belongs_to :restaurant
   has_many :votes, dependent: :destroy
 
+  mount_uploader :image_url, AuxPhotoUploader
+
   validates :restaurant, presence: true
 
   validates :user, presence: true
 
   validates :rating, presence: true,
              inclusion: { in: RATINGS }
+
+  validates_processing_of :image_url
 
   after_save :update_restaurant_rating_cache
 

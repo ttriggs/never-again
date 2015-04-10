@@ -25,6 +25,16 @@ feature 'creating and updating restaurants' do
       expect(page).to have_content(restaurant.name)
     end
 
+    scenario 'I can see the picture I add when I create a restaurant' do
+      restaurant = FactoryGirl.create(:restaurant)
+
+      visit restaurant_path(restaurant)
+
+      within "#image-url" do
+        expect(page).to have_css("img")
+      end
+    end
+
     scenario 'I can see edit and delete links for a restaurant I created' do
       restaurant = FactoryGirl.create(:restaurant, user: user)
       visit restaurant_path(restaurant)

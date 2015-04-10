@@ -23,8 +23,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'carrierwave'
-
 gem 'kaminari'
 
 # Use ActiveModel has_secure_password
@@ -46,18 +44,26 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'dotenv-rails'
 end
 
+group :development, :test do
+  gem "dotenv-rails"
+  gem 'rspec-rails', group: [:development, :test]
+  gem 'capybara', group: [:development, :test]
+  gem 'launchy', group: [:development, :test]
+  gem 'factory_girl_rails', group: [:development, :test]
+  gem 'valid_attribute', group: [:development, :test]
+  gem 'shoulda-matchers', require: false
+end
 
-gem 'rspec-rails', group: [:development, :test]
-gem 'capybara', group: [:development, :test]
-gem 'launchy', group: [:development, :test]
-gem 'factory_girl_rails', group: [:development, :test]
-gem 'valid_attribute', group: [:development, :test]
-gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
+gem 'fog'
+gem 'fog-aws'
+gem 'carrierwave'
+gem 'mini_magick'
 gem 'foundation-rails', "5.5.1.0"
+
+gem 'rails_12factor', group: :production
 
 group :test do
   gem 'coveralls', require: false

@@ -45,4 +45,20 @@ feature "Add a review for a restaurant", %q(
 
     expect(page).to_not have_link("Create Review")
   end
+
+  scenario "I can see a picture from my review" do
+    restaurant = FactoryGirl.create(:restaurant)
+    reviewer = FactoryGirl.create(:user)
+    sign_in_as(reviewer)
+
+    visit restaurant_path(restaurant)
+    select("2", from: "Rating")
+    fill_in("Review", with: "An affront to all five senses")
+    attach_file("Image url", Rails.root.join("app/assets/images/default_images/profile_default.png"))
+    click_on("Create Review")
+
+    within ".review-image" do
+      expect(page).to have_css("img")
+    end
+  end
 end
