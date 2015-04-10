@@ -36,6 +36,10 @@ class Review < ActiveRecord::Base
     end
   end
 
+  def date_submitted
+    created_at.strftime("%d-%m-%Y")
+  end
+
   private
 
   def fetch_vote(user)
