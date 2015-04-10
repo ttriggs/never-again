@@ -1,43 +1,49 @@
-<div class="restaurant-show-header"><h1><%= @restaurant.name %></h1></div>
-
+<div class="row">
+  <div class="restaurant-show-header"><h1><%= @restaurant.name %></h1></div>
+</div>
 <% rating = @restaurant.rating_cache || "No Rating yet. Be the first!" %>
 
-<div class="small-6 columns">
-  <div class="restaurant-details">
-    <div class="restaurant-rating">Rating: <%= rating %> bombs</div>
-    <div class="cuisine">
-    <% if @restaurant.cuisine.present? %>
-      Type of Cuisine: <%= @restaurant.cuisine.name %>
-    <% else %>
-      <h6>Uncategorized></h6>
-    <% end %>
+<div class="row">
+  <div class="small-6 columns">
+    <div class="restaurant-details">
+      <div class="restaurant-rating">
+        Rating: <%= rating %> bombs
+      </div>
+      <div class="cuisine">
+      <% if @restaurant.cuisine.present? %>
+        Type of Cuisine: <%= @restaurant.cuisine.name %>
+      <% else %>
+        <h6>Uncategorized></h6>
+      <% end %>
+      </div>
+      <div class="description">
+        <p>Description: <%= @restaurant.description %></p>
+      </div>
     </div>
-    <div class="description"><p>Description: <%= @restaurant.description %></p></div>
+
+    <div id="new-review-on-show">
+      <% if user_signed_in? %>
+        <div>
+          <%= render '/reviews/form' %>
+        </div>
+      <% else %>
+        <div id="sign-in">
+          <%= link_to 'Sign in to add a review', new_user_session_path %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <div id="new-review-on-show">
-    <% if user_signed_in? %>
-      <div>
-        <%= render '/reviews/form' %>
-      </div>
-    <% else %>
-      <div>
-        <%= link_to 'Sign in to add a review', new_user_session_path %>
-      </div>
-    <% end %>
+  <div class="small-6 columns">
+    <iframe
+    width="400"
+    height="325"
+    frameborder="0" style="border:0"
+    src= "https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_MAPS_API_KEY"] %>
+    &q=<%= @google_query %>">
+    </iframe>
   </div>
 </div>
-
-<div class="small-6 columns">
-  <iframe
-  width="400"
-  height="325"
-  frameborder="0" style="border:0"
-  src= "https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_MAPS_API_KEY"] %>
-  &q=<%= @google_query %>">
-  </iframe>
-</div>
-
 
 <div class="small-12 columns">
   <div id="restaurant-actions">
@@ -67,18 +73,20 @@
 <div class="small-12 columns">
   <div class="reviews">
     <% if @reviews.empty? %>
-      <div> No Reviews yet for this restaurant </div>
+      <div>
+        No Reviews yet for this restaurant
+      </div>
     <% else %>
       <h3>Reviews</h3>
       <% @reviews.each do |review| %>
 
-        <div class="small-2 columns review-votes">
-          <div class="total-votes"><strong><%= pluralize(review.total_votes, "vote") %></strong></div>
+        <div class="row">
+          <div class="total-votes"><%= pluralize(review.total_votes, "vote") %></div>
           <%= link_to "Up vote", review_votes_path(review, type: "Upvote"), class: "tiny radius button alert", id: "upvote-button", method: :post %>
           <%= link_to "Down vote", review_votes_path(review, type: "Downvote"), class: "tiny radius button alert", id: "downvote-button", method: :post %>
-        </div>
+          </div>
 
-        <div class= "small-10 columns review-details">
+        <div class= "row review-details">
           <div>
             <div>Rating(1-5):
               <%= review.rating %>
@@ -90,7 +98,10 @@
               <%= review.body %>
             </div>
             <div>Submitted On:
-              <%= review.created_at %>
+              <%= review.date_submitted %>
+            </div>
+            <div>Submitted By:
+              <%= review.user.username %>
             </div>
           </div>
 
@@ -112,12 +123,9 @@
           </div>
 
         </div>
-
-        <!-- <div class="small-2 columns review-picture">
-          <h3>pics go here</h3>
-        </div> -->
       <% end %>
-      <%= paginate @reviews %>
     <% end %>
   </div>
 </div>
+
+<%= paginate @reviews %>
