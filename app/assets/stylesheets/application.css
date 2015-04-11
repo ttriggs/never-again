@@ -145,7 +145,7 @@ body {
   font-weight: bold;
   text-align: center;
   font-size: 1.2em;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .tag_line {

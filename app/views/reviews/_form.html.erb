@@ -14,11 +14,11 @@
 
   <fieldset class="rating">
       <legend>How badly did it bomb?</legend>
-      <input type="radio" id="star5" name="review[rating]" value="5" /><label for="star5" title="Rocks!">5 stars</label>
-      <input type="radio" id="star4" name="review[rating]" value="4" /><label for="star4" title="Pretty good">4 stars</label>
-      <input type="radio" id="star3" name="review[rating]" value="3" /><label for="star3" title="Meh">3 stars</label>
-      <input type="radio" id="star2" name="review[rating]" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
-      <input type="radio" id="star1" name="review[rating]" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+      <input type="radio" id="star5" name="review[rating]" value="5" /><label for="star5" title="Awful!">5 stars</label>
+      <input type="radio" id="star4" name="review[rating]" value="4" /><label for="star4" title="Pretty terrible">4 stars</label>
+      <input type="radio" id="star3" name="review[rating]" value="3" /><label for="star3" title="Sucks big time">3 stars</label>
+      <input type="radio" id="star2" name="review[rating]" value="2" /><label for="star2" title="Bleh">2 stars</label>
+      <input type="radio" id="star1" name="review[rating]" value="1" /><label for="star1" title="Sub par">1 star</label>
   </fieldset>
 
   <div class="field">Current Image: <%= @review.image_url.to_s.split("/").last %></div>

@@ -37,13 +37,13 @@
       <% image_url = restaurant.image_url.to_s %>
       <div class="radius-img" id="home-image-url">
         <div id="carousel-restaurant-name">
-          <a href="restaurant_path(<%= restaurant %>)%>"><%= restaurant.name %></a>
+          <%= link_to restaurant.name, restaurant_path(restaurant) %>
         </div>
         <div id="carousel-restaurant-image">
           <% if image_url != "no image" %>
             <%= link_to image_tag(image_url,  alt: restaurant.name), restaurant_path(restaurant) %>
           <% else %>
-            <img src="<%= asset_path( 'default_images/restaurant_default.png' ) %>" />
+            <%= link_to image_tag(asset_path( 'default_images/restaurant_default.png' ),  alt: restaurant.name), restaurant_path(restaurant) %>
           <% end %>
         </div>
       </div>

@@ -28,6 +28,15 @@ class Restaurant < ActiveRecord::Base
     self.save!
   end
 
+  def show_rating
+    if rating_cache.nil?
+      "No Rating yet. Be the first!"
+    else
+      "#{rating_cache} bombs"
+    end
+  end
+
+
 #validate name & address for scope
   def owner?(current_user)
     user == current_user
