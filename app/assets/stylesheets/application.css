@@ -33,7 +33,7 @@ body {
   font-size: 1em;
   font-family: Raleway, Helvetica, sans-serif;
   margin: 0.4em;
-  transition:  0.2s;
+  transition:  0.4s;
 }
 
 .top-bar-section li:not(.has-form) a:not(.button):hover {
