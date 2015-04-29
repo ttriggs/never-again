@@ -6,5 +6,5 @@
 A Yelp-esque app to catalog your worst dining experiences.
 
 ## ERD:
-![alt](http://imgur.com/B7z9Yuf)
+[Imgur](http://i.imgur.com/B7z9Yuf.png)
 
