@@ -6,5 +6,5 @@
 A Yelp-esque app to catalog your worst dining experiences.
 
 ## ERD:
-[Never Again Boston ERD 20150420](http://i.imgur.com/B7z9Yuf.png)
+[Never Again Boston ERD](http://i.imgur.com/B7z9Yuf.png)
 
